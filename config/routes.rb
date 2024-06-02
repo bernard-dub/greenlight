@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resources :images
   end
   devise_for :users
+  get 'cards/tagged/:tag', to: "cards#tagged", as: :cards_tagged
   resource :card
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

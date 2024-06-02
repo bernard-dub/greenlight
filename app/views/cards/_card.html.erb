@@ -18,15 +18,9 @@
 			<%= link_to card.title, card, class:"text-lime-700" %>
 		</div>
 	    <div class="px-2  pb-2">
-			<% card.locations.each do |location| %>
-	     	 <span class="inline-block bg-lime-700 rounded-full px-3 py-1 text-sm font-semibold text-yellow-200 mr-2 mb-2">#<%= location.name %></span>
-		  	<% end %>
-			<% card.topics.each do |topic| %>
-	     	 <span class="inline-block bg-lime-700 rounded-full px-3 py-1 text-sm font-semibold text-yellow-200 mr-2 mb-2">#<%= topic.name %></span>
-		  	<% end %>
-			<% card.statuses.each do |status| %>
-	     	 <span class="inline-block bg-lime-700 rounded-full px-3 py-1 text-sm font-semibold text-yellow-200 mr-2 mb-2">#<%= status.name %></span>
-		  	<% end %>
+			<%= render partial: 'tag', collection: card.locations %>
+			<%= render partial: 'tag', collection: card.topics %>
+			<%= render partial: 'tag', collection: card.statuses %>
 	    </div>
 	    <% if action_name == "show" %>
 	    <p class="text-lime-700 text-base">

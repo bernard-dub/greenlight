@@ -10,6 +10,11 @@ class CardsController < ApplicationController
   # GET /cards/1 or /cards/1.json
   def show
   end
+  
+  def tagged
+    @cards = Card.tagged_with(params['tag'])
+    @tag = ActsAsTaggableOn::Tag.where(name:params['tag']).first
+  end
 
   # GET /cards/new
   def new
