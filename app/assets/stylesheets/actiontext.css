@@ -29,3 +29,8 @@
   padding: 0 !important;
   max-width: 100% !important;
 }
+
+/* prevent lists conflic with tailwind */
+trix-editor ul { list-style-type: disc !important; margin-left: 1rem !important; }
+trix-editor ol { list-style-type: decimal !important; margin-left: 1rem !important; }
+
