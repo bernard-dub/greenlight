@@ -1,5 +1,5 @@
 
-<div id="<%= dom_id card %>" class="rounded-lg overflow-hidden shadow-lg bg-yellow-300 hover:bg-lime-400 border-2 border-transparent hover:border-lime-700 relative">
+<div id="<%= dom_id card %>" class="rounded-lg overflow-hidden shadow-lg hover:shadow-none bg-stone-100 hover:bg-stone-200 border-2 border-transparent hover:border-lime-700 relative">
 	
 	<div class="flex">
 		<% card.persisted_images.each do |image| %>
@@ -8,26 +8,30 @@
 			</figure>
 		<% end %>
 	</div>
+	
 	<% if user_signed_in? %>
 		<%= link_to edit_card_path(card), class: "bg-sky-200/50 hover:bg-sky-300 text-sky-600 font-medium py-1 px-3 rounded-lg inline-flex items-center absolute top-3 right-3" do %>
 			<%= render "layouts/icons/wrench" %>
 		<% end %>
 	<% end %>
+	
   	<div class="p-3">
-	    <div class="font-bold text-xl mb-2">
+	    <div class="font-bold text-xl">
 			<%= link_to card.title, card, class:"text-lime-700" %>
 		</div>
-	    <div class="px-2  pb-2">
+	    <div class="mb-2 text-lime-700">
+			<%= card.subtitle %> <%= link_to "> Plus ...", card, class:"text-lime-700" unless action_name == "show" or card.body.blank? %>
+		</div>
+	    <div>
 			<%= render partial: 'tag', collection: card.locations %>
 			<%= render partial: 'tag', collection: card.topics %>
 			<%= render partial: 'tag', collection: card.statuses %>
 	    </div>
 	    <% if action_name == "show" %>
-	    <p class="text-lime-700 text-base">
+		<div class="text-lime-700">
 	      <%= card.body %>
-		</p>
+	  	</div>
 		<% end %>
-    
   	</div>
   
 </div>
