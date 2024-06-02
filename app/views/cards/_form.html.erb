@@ -1,0 +1,57 @@
+<%= form_with(model: card, class: "contents") do |form| %>
+  <% if card.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h2>
+
+      <ul>
+        <% card.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+<div class="card-images rounded-lg my-10 flex">
+	
+    <% card.persisted_images.each do |image| %>
+      <figure class="relative min-w-500">
+        <%= image_tag image.variant(:thumb) %>
+        <%= tag.button(
+          "Supprimer",
+          type: "submit",
+          form: "delete_image_#{image.id}",
+		  class: "rounded-lg py-3 px-5 max-w-96 bg-gray-100/50 hover:bg-gray-100 inline-block font-medium absolute top-6 left-3") %>
+      </figure>
+    <% end %>
+	
+  	<div class="py-3 px-3 min-h-32 w-96 grow bg-gray-100">
+  		<%= form.label "Ajouter image"%>
+  		<%= form.file_field :new_images, multiple: true, direct_upload: true, class:"file:rounded-lg file:py-3 file:px-5 file:bg-gray-100 file:inline-block file:font-medium" %>
+  	</div>
+	
+</div>
+  
+	<div class="mb-10">
+		<%= form.label 'Titre', class: "" %>
+		<%= form.text_field 'title', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full text-3xl font-bold"  %>
+	</div>
+
+	<div class="mb-10">
+		<%= form.label 'Texte', class:"" %>
+		<%= form.rich_text_area 'body', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+	</div>
+  
+  <div>
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>
+
+<% card.persisted_images.each do |image| %>
+  <%= form_with(
+    model: image,
+    url: card_image_path(card, image),
+    method: :delete,
+    id: "delete_image_#{image.id}") do %>
+  <% end %>
+<% end %>
+

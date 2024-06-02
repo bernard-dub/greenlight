@@ -1,0 +1,33 @@
+
+<div id="<%= dom_id card %>" class="rounded-lg overflow-hidden shadow-lg bg-lime-200 hover:bg-lime-400 border-2 border-transparent hover:border-lime-700 relative">
+	
+	<div class="flex">
+		<% card.persisted_images.each do |image| %>
+			<figure class="h-48 overflow-hidden">
+				<%= image_tag image.variant(:thumb), class:"object-cover min-h-48" %>
+			</figure>
+		<% end %>
+	</div>
+	<% if current_user %>
+		<%= link_to edit_card_path(card), class: "bg-sky-200 hover:bg-sky-300 text-sky-600 font-medium py-1 px-3 rounded-lg inline-flex items-center absolute top-3 right-3" do %>
+			<%= render "layouts/icons/wrench" %>
+		<% end %>
+	<% end %>
+  	<div class="px-6 py-4">
+    <div class="font-bold text-xl mb-2">
+		<%= link_to card.title, card, class:"text-lime-700" %>
+	</div>
+    <div class="px-2 pt-4 pb-2">
+      <span class="inline-block bg-green-200 rounded-full px-3 py-1 text-sm font-semibold text-green-700 mr-2 mb-2">#photography</span>
+      <span class="inline-block bg-green-200 rounded-full px-3 py-1 text-sm font-semibold text-green-700 mr-2 mb-2">#travel</span>
+      <span class="inline-block bg-green-200 rounded-full px-3 py-1 text-sm font-semibold text-green-700 mr-2 mb-2">#winter</span>
+    </div>
+    <% if action_name == "show" %>
+    <p class="text-lime-700 text-base">
+      <%= card.body %>
+	</p>
+	<% end %>
+    
+  </div>
+  
+</div>
