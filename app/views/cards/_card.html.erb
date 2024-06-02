@@ -20,7 +20,7 @@
 			<%= link_to card.title, card, class:"text-lime-700" %>
 		</div>
 	    <div class="mb-2 text-lime-700">
-			<%= card.subtitle %> <%= link_to "> Plus ...", card, class:"text-lime-700" unless action_name == "show" or card.body.blank? %>
+			<%= card.subtitle %> <%= link_to "> Plus ...", card, class:"text-lime-700 hover:underline" unless action_name == "show" or card.body.blank? %>
 		</div>
 	    <div>
 			<%= render partial: 'tag', collection: card.locations %>
