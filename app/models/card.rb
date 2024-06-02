@@ -1,6 +1,8 @@
 class Card < ApplicationRecord
   attr_reader :new_images
   
+  acts_as_taggable_on :locations, :topics, :statuses
+  
   has_many_attached :images do |attachable|
     attachable.variant :thumb, resize_to_limit: [500, 300]
   end

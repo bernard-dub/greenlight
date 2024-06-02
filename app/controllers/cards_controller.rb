@@ -74,7 +74,7 @@ class CardsController < ApplicationController
       # if current_admin
 #         params.require(:poster).permit(:name, :email, :score, :image, :pdf, :place_list, :status)
 #       else
-        params.require(:card).permit(:title, :body, new_images: [])
+        params.require(:card).permit(:title, :subtitle, :body, :location_list, :topic_list, :status_list, new_images: [])
       # end
     end
 end
