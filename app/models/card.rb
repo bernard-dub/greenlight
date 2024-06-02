@@ -9,6 +9,14 @@ class Card < ApplicationRecord
   
   has_rich_text :body
   
+  def self.tagged_with_id(id)
+    ActsAsTaggableOn::Tag.find(id).taggings.map{|t|Card.find t.taggable_id}
+  end
+  
+  def tags
+    self.locations + self.topics + self.statuses
+  end
+  
   def new_images=(images)
     self.images.attach(images)
   end

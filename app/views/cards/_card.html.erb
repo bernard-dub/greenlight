@@ -1,5 +1,5 @@
 
-<div id="<%= dom_id card %>" class="rounded-lg overflow-hidden shadow-lg hover:shadow-none bg-stone-100 hover:bg-stone-200 border-2 border-transparent hover:border-lime-700 relative">
+<div id="<%= dom_id card %>" class="rounded-lg overflow-hidden shadow-lg bg-isabellinewhite border-2 border-transparent relative <% unless action_name == 'show' %> hover:shadow-none hover:border-darkgreen<% end %>">
 	
 	<div class="flex">
 		<% card.persisted_images.each do |image| %>
@@ -17,10 +17,10 @@
 	
   	<div class="p-3">
 	    <div class="font-bold text-xl">
-			<%= link_to card.title, card, class:"text-lime-700" %>
+			<%= link_to card.title, card, class:"text-grapeblack" %>
 		</div>
-	    <div class="mb-2 text-lime-700">
-			<%= card.subtitle %> <%= link_to "> Plus ...", card, class:"text-lime-700 hover:underline" unless action_name == "show" or card.body.blank? %>
+	    <div class="mb-2 text-darkgreen">
+			<%= card.subtitle %> <%= link_to "> Plus ...", card, class:"text-darkgreen hover:underline" unless action_name == "show" or card.body.blank? %>
 		</div>
 	    <div>
 			<%= render partial: 'tag', collection: card.locations %>
@@ -28,7 +28,7 @@
 			<%= render partial: 'tag', collection: card.statuses %>
 	    </div>
 	    <% if action_name == "show" %>
-		<div class="text-lime-700">
+		<div class="text-darkgreen">
 	      <%= card.body %>
 	  	</div>
 		<% end %>

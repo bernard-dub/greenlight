@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, except: %i[index show tagged]
   before_action :set_card, only: %i[ show edit update destroy ]
 
   # GET /cards or /cards.json
@@ -12,8 +12,15 @@ class CardsController < ApplicationController
   end
   
   def tagged
-    @cards = Card.tagged_with(params['tag'])
-    @tag = ActsAsTaggableOn::Tag.where(name:params['tag']).first
+    ids = params['id'].split('/')
+    @tags = ids.map {|id| ActsAsTaggableOn::Tag.find(id.to_s)}
+    names = @tags.map(&:name)
+    @cards = Card.tagged_with(names)
+    @all_tags = []
+    @cards.each do |card|
+      @all_tags << card.tags
+    end
+    @related_tags = @all_tags.flatten.uniq - @tags
   end
 
   # GET /cards/new
