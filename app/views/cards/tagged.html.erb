@@ -17,9 +17,11 @@
   </div>
   
   <div>
-	  <% unless @cards.size == 1 %>
+	  <% unless @cards.size < 3 %>
 	  	Combiner avec :
-	  	<%= render partial: 'related_tag', collection: @related_tags %>
+	  	<div>Localités : <%= render partial: 'related_tag', collection: @related_tags[:locations] %></div>
+		<div>Thèmes : <%= render partial: 'related_tag', collection: @related_tags[:topics] %></div>
+		<div>Statuts : <%= render partial: 'related_tag', collection: @related_tags[:statuses] %></div>
 	  <% end %>
   </div>
 

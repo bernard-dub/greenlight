@@ -16,11 +16,16 @@ class CardsController < ApplicationController
     @tags = ids.map {|id| ActsAsTaggableOn::Tag.find(id.to_s)}
     names = @tags.map(&:name)
     @cards = Card.tagged_with(names)
-    @all_tags = []
+    @all_tags = {:locations => [], :topics => [], :statuses => []}
     @cards.each do |card|
-      @all_tags << card.tags
+      @all_tags[:locations] << card.locations
+      @all_tags[:topics] << card.topics
+      @all_tags[:statuses] << card.statuses
     end
-    @related_tags = @all_tags.flatten.uniq - @tags
+    @related_tags = {}
+    @related_tags[:locations] = @all_tags[:locations].flatten.uniq - @tags
+    @related_tags[:topics] = @all_tags[:topics].flatten.uniq - @tags
+    @related_tags[:statuses] = @all_tags[:statuses].flatten.uniq - @tags
   end
 
   # GET /cards/new
@@ -68,6 +73,22 @@ class CardsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to cards_url, notice: "Card was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+  
+  def import_data
+    ods = Roo::OpenOffice.new(Rails.root.join('lib', 'assets', 'import.ods'))
+    ods.sheet(0).each_with_index(title: 'Titre', subtitle: 'Sous-titre', body: 'Corps_de_texte',
+                                 locations: 'lieux', topics: 'thèmes', statuses: 'statut') do |row, row_index|                           
+      next if row_index == 0 || row_index > 21
+      # logger.debug "********* locations : #{row[:topics]}"
+     card = Card.find_or_create_by(title: row[:title])
+     card.update( title: row[:title],
+                  subtitle: row[:subtitle],
+                  body: row[:body],
+                  location_list: row[:locations],
+                  topic_list: row[:topics],
+                  status_list: row[:statuses])
     end
   end
 

@@ -9,6 +9,8 @@ class Card < ApplicationRecord
   
   has_rich_text :body
   
+  validates_presence_of :title
+  
   def self.tagged_with_id(id)
     ActsAsTaggableOn::Tag.find(id).taggings.map{|t|Card.find t.taggable_id}
   end

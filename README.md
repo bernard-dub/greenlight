@@ -30,6 +30,8 @@ A small app to display and organize projects, ideas or actions in a local commun
 * Multifactored combinations of tags (e.g. idea + mobility + lustin)
 * Like buttons with cookies
 * Share buttons
+* import items from spreadsheet
+https://medium.com/@schmidlinicole/how-to-import-data-from-an-excel-file-in-rails-7ac9a628137f
 
 ## Timesheet
 | date			 | duration |
