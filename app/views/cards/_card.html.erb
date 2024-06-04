@@ -4,28 +4,34 @@
 	<div class="flex">
 		<% card.persisted_images.each do |image| %>
 			<figure class="h-48 overflow-hidden">
-				<%= image_tag image.variant(:thumb), class:"object-cover min-h-48" %>
+				<%= link_to_unless_current (image_tag image.variant(:thumb), class:"object-cover min-h-48"), card do %>
+				<%= image_tag image, class:"object-cover min-h-48" %>
+				<% end %>
 			</figure>
 		<% end %>
 	</div>
 	
 	<% if user_signed_in? %>
-		<%= link_to edit_card_path(card), class: "bg-sky-200/50 hover:bg-sky-300 text-sky-600 font-medium py-1 px-3 rounded-lg inline-flex items-center absolute top-3 right-3" do %>
+		<%= link_to edit_card_path(card), class: "bg-sky-200/50 hover:bg-sky-300 text-sky-600 font-medium py-1 px-3 rounded-lg inline-flex items-center absolute bottom-3 right-3" do %>
 			<%= render "layouts/icons/wrench" %>
 		<% end %>
 	<% end %>
-	
+	<%#= debug card_path(card) %>
+	<%#= debug card.body.blank? %>
   	<div class="p-3">
-	    <div class="font-bold text-xl">
-			<%= link_to card.title, card, class:"text-grapeblack" %>
+	    <div class="font-bold text-xl text-grapeblack">
+			<%= link_to_unless (current_page?(card_path(card)) || card.body.blank?), card.title, card, class:"hover:underline" %>
 		</div>
 	    <div class="mb-2 text-darkgreen">
-			<%= card.subtitle %> <%= link_to "> Plus ...", card, class:"text-darkgreen hover:underline" unless action_name == "show" or card.body.blank? %>
+			<%= link_to_unless (current_page?(card_path(card)) || card.body.blank?), card.subtitle, card do %>
+			<%= card.subtitle %>
+			<%= "> Plus ..." unless (current_page?(card_path(card)) || card.body.blank?) %>
+			<% end %>
 		</div>
 	    <div>
-			<%= render partial: 'tag', collection: card.locations %>
-			<%= render partial: 'tag', collection: card.topics %>
-			<%= render partial: 'tag', collection: card.statuses %>
+			<span class="[&_a]:bg-marinegreen"><%= render partial: 'tag', collection: card.locations %></span>
+			<span ><%= render partial: 'tag', collection: card.topics %></span>
+			<span class="[&_a]:bg-fluogreen [&_a]:text-grapeblack"><%= render partial: 'tag', collection: card.statuses %></span>
 	    </div>
 	    <% if action_name == "show" %>
 		<div class="text-darkgreen">

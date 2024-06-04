@@ -3,7 +3,7 @@
 	#<%= related_tag.name %>
 	<% end %>
 <% else %>
-	<%= link_to cards_tagged_path(@tags + [related_tag]), class:"inline-block bg-lightgreen hover:bg-razzmicberry rounded-full px-3 py-1 text-sm font-semibold text-isabellinewhite mr-2 mb-2" do %>
+	<%= link_to cards_tagged_path(@tags + [related_tag]), class:"inline-block bg-lightgreen hover:bg-razzmicberry rounded-full px-3 py-1 text-sm font-semibold text-isabellinewhite hover:text-isabellinewhite mr-2 mb-2" do %>
 	#<%= related_tag.name %>
 	<% end %>
 <% end %>

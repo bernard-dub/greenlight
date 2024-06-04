@@ -18,9 +18,9 @@ class CardsController < ApplicationController
     @cards = Card.tagged_with(names)
     @all_tags = {:locations => [], :topics => [], :statuses => []}
     @cards.each do |card|
-      @all_tags[:locations] << card.locations
-      @all_tags[:topics] << card.topics
-      @all_tags[:statuses] << card.statuses
+      @all_tags[:locations] << card.locations.most_used
+      @all_tags[:topics] << card.topics.most_used
+      @all_tags[:statuses] << card.statuses.most_used
     end
     @related_tags = {}
     @related_tags[:locations] = @all_tags[:locations].flatten.uniq - @tags
