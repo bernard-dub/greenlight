@@ -6,36 +6,41 @@
 
 
 <div class="w-full container">
-	<%= render partial: 'logo-ecolo' %>
-  <div class="flex justify-between items-center">
+  <div class="flex justify-between items-center mb-2">
     <h1 class="font-bold text-5xl text-darkgreen">
 		<% @tags.each do |tag| %>
-			#<%= tag.name%>
+			<%= link_to_unless current_page?(cards_tagged_path(tag.id)), "##{tag.name}", cards_tagged_path(tag), class:"hover:underline"%>
 		<% end %>
 	</h1>
     <%= render partial: 'new_card_button' %>
   </div>
   
   <% unless @cards.size < 4 %> 
-	<div class="">Combiner avec :</div>
-	<div class="flex"> 
-		<div class="flex-none w-32">Localités :</div>
+	<div class="font-bold text-lg border-b-2 border-gray-200 mb-2">Combiner avec ...</div>
+	<% unless @related_tags[:locations].empty? %>
+	<div class="flex border-b-2 border-gray-200 mb-2"> 
+		<div class="flex-none w-32">Localité</div>
 	  	<div class="flex-1 [&_a]:bg-marinegreen">
 			<%= render partial: 'related_tag', collection: @related_tags[:locations] %>
 		</div>
 	</div>
-	<div class="flex"> 
-		<div class="flex-none w-32">Thèmes :</div>
+	<% end %>
+	<% unless @related_tags[:topics].empty? %>
+	<div class="flex border-b-2 border-gray-200 mb-2"> 
+		<div class="flex-none w-32">Thème</div>
 		<div class="flex-1">
 			<%= render partial: 'related_tag', collection: @related_tags[:topics] %>
 		</div>
 	</div>
-	<div class="flex">
-		<div class="flex-none w-32">Statuts :</div>
+	<% end %>
+	<% unless @related_tags[:statuses].empty? %>
+	<div class="flex border-b-2 border-gray-200 mb-2">
+		<div class="flex-none w-32">Statut</div>
 		<div class="flex-1 [&_a]:bg-fluogreen [&_a]:text-grapeblack">
 			<%= render partial: 'related_tag', collection: @related_tags[:statuses] %>
 		</div>
 	</div>
+	<% end %>
   <% else %>
 	<%= link_to "Retour à la liste", cards_path, class:"hover:underline" %>
   <% end %>

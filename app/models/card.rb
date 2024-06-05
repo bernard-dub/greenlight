@@ -4,7 +4,7 @@ class Card < ApplicationRecord
   acts_as_taggable_on :locations, :topics, :statuses
   
   has_many_attached :images do |attachable|
-    attachable.variant :thumb, resize_to_limit: [500, 300]
+    attachable.variant :thumb, resize_to_limit: [600, 400]
   end
   
   has_rich_text :body
