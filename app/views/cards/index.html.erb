@@ -11,20 +11,20 @@ Accueil
   </div>
 
 <div class="font-bold text-lg border-b-2 border-gray-200 mb-2">Explorer par ...</div>
-<div class="flex border-b-2 border-gray-200 mb-2"> 
-	<div class="flex-none w-32">Localité</div>
+<div class="flex flex-wrap md:flex-nowrap border-b-2 border-gray-200 mb-2"> 
+	<div class="md:flex-none md:w-32 basis-full">Localité</div>
   	<div class="flex-1 [&_a]:bg-marinegreen">
 		<%= render partial: 'tag', collection: ActsAsTaggableOn::Tag.for_context(:locations).most_used(10) %>
 	</div>
 </div>
-<div class="flex border-b-2 border-gray-200 mb-2"> 
-	<div class="flex-none w-32">Thème</div>
+<div class="flex flex-wrap md:flex-nowrap border-b-2 border-gray-200 mb-2"> 
+	<div class="md:flex-none md:w-32 basis-full">Thème</div>
 	<div class="flex-1">
 		<%= render partial: 'tag', collection: ActsAsTaggableOn::Tag.for_context(:topics).most_used(10) %>
 	</div>
 </div>
-<div class="flex border-b-2 border-gray-200 mb-2">
-	<div class="flex-none w-32">Statut</div>
+<div class="flex flex-wrap md:flex-nowrap border-b-2 border-gray-200 mb-2">
+	<div class="md:flex-none md:w-32 basis-full">Statut</div>
 	<div class="flex-1 [&_a]:bg-fluogreen [&_a]:text-grapeblack">
 		<%= render partial: 'tag', collection: ActsAsTaggableOn::Tag.for_context(:statuses).most_used(10) %>
 	</div>

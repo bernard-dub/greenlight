@@ -21,7 +21,9 @@
 		    <p class="w-full py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="notice"><%= alert %></p>
 		  <% end %>
  	 	</div>
-		<%= render partial: 'logo-ecolo' %>
+		<%= link_to root_path, class:"flex mb-2" do %>
+		<span class="p-2"><%= render partial: 'logo-ecolo' %></span><span class="ml-2 text-darkgreen font-bold uppercase p-2 border-2 border-darkgreen">Profondeville</span>
+		<% end %>
       	<%= yield %>
 		<footer>
 			<% if user_signed_in? %> 

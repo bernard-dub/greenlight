@@ -4,7 +4,7 @@
 	<div class="flex">
 		<% card.persisted_images.each do |image| %>
 			<figure class="h-48 overflow-hidden">
-				<%= link_to_unless_current (image_tag image.variant(:thumb), class:"object-cover min-h-48"), card do %>
+				<%= link_to_unless (current_page?(card_path(card)) || card.body.blank?), (image_tag image.variant(:thumb), class:"object-cover min-h-48"), card do %>
 				<%= image_tag image, class:"object-cover min-h-48" %>
 				<% end %>
 			</figure>
