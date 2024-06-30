@@ -77,10 +77,10 @@ class CardsController < ApplicationController
   end
   
   def import_data
-    ods = Roo::OpenOffice.new(Rails.root.join('lib', 'assets', 'import.ods'))
+    ods = Roo::OpenOffice.new(Rails.root.join('lib', 'assets', 'import_20240615.ods'))
     ods.sheet(0).each_with_index(title: 'Titre', subtitle: 'Sous-titre', body: 'Corps_de_texte',
                                  locations: 'lieux', topics: 'thèmes', statuses: 'statut') do |row, row_index|                           
-      next if row_index == 0 || row_index > 21
+      next if row_index == 0 || row[:title].blank?
       # logger.debug "********* locations : #{row[:topics]}"
      card = Card.find_or_create_by(title: row[:title])
      card.update( title: row[:title],

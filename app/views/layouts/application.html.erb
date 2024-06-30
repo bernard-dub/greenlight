@@ -9,6 +9,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+	<%= render 'layouts/heads' %>
   </head>
 
   <body>
@@ -22,7 +23,7 @@
 		  <% end %>
  	 	</div>
 		<%= link_to root_path, class:"flex mb-2" do %>
-		<span class="p-2"><%= render partial: 'logo-ecolo' %></span><span class="ml-2 text-darkgreen font-bold uppercase p-2 border-2 border-darkgreen">Profondeville</span>
+		<span class="p-2"><%= render partial: 'layouts/logo-ecolo' %></span><span class="ml-2 text-darkgreen font-bold uppercase p-2 border-2 border-darkgreen">Profondeville</span>
 		<% end %>
       	<%= yield %>
 		<footer>

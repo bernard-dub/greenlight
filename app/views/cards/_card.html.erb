@@ -16,8 +16,7 @@
 			<%= render "layouts/icons/wrench" %>
 		<% end %>
 	<% end %>
-	<%#= debug card_path(card) %>
-	<%#= debug card.body.blank? %>
+
   	<div class="p-3">
 	    <div class="font-bold text-xl text-grapeblack">
 			<%= link_to_unless (current_page?(card_path(card)) || card.body.blank?), card.title, card, class:"hover:underline" %>
@@ -33,11 +32,7 @@
 			<span ><%= render partial: 'tag', collection: card.topics %></span>
 			<span class="[&_a]:bg-fluogreen [&_a]:text-grapeblack"><%= render partial: 'tag', collection: card.statuses %></span>
 	    </div>
-	    <% if action_name == "show" %>
-		<div class="text-darkgreen">
-	      <%= card.body %>
-	  	</div>
-		<% end %>
+	    
   	</div>
   
 </div>
