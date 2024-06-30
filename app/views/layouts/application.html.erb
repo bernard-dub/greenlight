@@ -30,8 +30,6 @@
 			<% if user_signed_in? %> 
 			 <div> <%= current_user.email %> </div> 
 			  <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %> 
-			<% else %>
-			  <%= button_to "Sign in", new_user_session_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %> 
 			<% end %>
 		</footer>
     </main>
