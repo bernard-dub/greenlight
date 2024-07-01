@@ -80,3 +80,6 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+# https://devcenter.heroku.com/articles/active-storage-on-heroku
+gem "aws-sdk-s3", require: false 
