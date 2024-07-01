@@ -46,7 +46,7 @@
 		<%= form.rich_text_area 'body', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full min-h-64" %>
 	</div>
 	
-	<div class="mb-10 flex flex-wrap gap-4">
+	<div class="flex flex-wrap gap-4">
 		<div class="flex-basis-1/4">
 			<%= form.label :location_list, "Localisations", class:"block" %>
 			<%=
@@ -72,6 +72,13 @@
 			%>
 		</div>
 	</div>
+	
+	<div class="mt-10 mb-10" >
+		<%= form.check_box :published, class:'checkbox' %>
+		<%= form.label :published, "Publié" %>
+		
+	</div>
+	
   
   <div>
     <%= form.submit "Sauvegarder", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>

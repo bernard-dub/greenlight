@@ -7,6 +7,8 @@ class Card < ApplicationRecord
     attachable.variant :thumb, resize_to_limit: [600, 400]
   end
   
+  scope :published, -> { where(published: true) }
+  
   has_rich_text :body
   
   validates_presence_of :title

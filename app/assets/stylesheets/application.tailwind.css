@@ -18,11 +18,11 @@ div#more-tags {
 }
 
 /* Toggled State */
-input[type=checkbox]:checked ~ div#more-tags {
+input#toggle-more:checked ~ div#more-tags {
    display:inline;
 }
 
-input[type=checkbox] {
+input#toggle-more {
    position: absolute;
    top: -9999px;
    left: -9999px;

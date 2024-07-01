@@ -4,7 +4,7 @@ class CardsController < ApplicationController
 
   # GET /cards or /cards.json
   def index
-    @cards = Card.all
+    @cards = user_signed_in? ? Card.all : Card.published
   end
 
   # GET /cards/1 or /cards/1.json
@@ -107,7 +107,7 @@ class CardsController < ApplicationController
       # if current_admin
 #         params.require(:poster).permit(:name, :email, :score, :image, :pdf, :place_list, :status)
 #       else
-        params.require(:card).permit(:title, :subtitle, :body, :location_list, :topic_list, :status_list, new_images: [])
+        params.require(:card).permit(:title, :subtitle, :body, :location_list, :topic_list, :status_list, :published, new_images: [])
       # end
     end
 end

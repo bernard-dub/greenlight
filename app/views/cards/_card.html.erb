@@ -12,6 +12,7 @@
 	</div>
 	
 	<% if user_signed_in? %>
+		<%if !card.published %><span class="bg-red-200/50 hover:bg-red-300 text-red-600 text-sm py-1 px-3 rounded-lg inline-flex items-center absolute bottom-3 left-3">NON PUBLIE</span><% end %>
 		<%= link_to edit_card_path(card), class: "bg-sky-200/50 hover:bg-sky-300 text-sky-600 font-medium py-1 px-3 rounded-lg inline-flex items-center absolute bottom-3 right-3" do %>
 			<%= render "layouts/icons/wrench" %>
 		<% end %>
