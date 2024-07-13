@@ -1,7 +1,7 @@
 
 <div id="<%= dom_id card %>" class="rounded-lg overflow-hidden shadow-lg bg-isabellinewhite border-2 border-transparent relative <% unless action_name == 'show' %> hover:shadow-none hover:border-darkgreen<% end %>">
 	
-	<div class="flex">
+	<div class="flex relative min-h-12">
 		<% card.persisted_images.each do |image| %>
 			<figure class="h-48 overflow-hidden">
 				<%= link_to_unless (current_page?(card_path(card)) || card.body.blank?), (image_tag image.variant(:thumb), class:"object-cover min-h-48"), card do %>
@@ -9,6 +9,7 @@
 				<% end %>
 			</figure>
 		<% end %>
+		<span class="[&_a]:bg-fluogreen [&_a]:text-grapeblack absolute bottom-0 left-3"><%= render partial: 'tag', collection: card.statuses %></span>
 	</div>
 	
 	<% if user_signed_in? %>
@@ -18,7 +19,8 @@
 		<% end %>
 	<% end %>
 
-  	<div class="p-3">
+  	<div class="pt-1 px-3 pb-3">
+		
 	    <div class="font-bold text-xl text-grapeblack">
 			<%= link_to_unless (current_page?(card_path(card)) || card.body.blank?), card.title, card, class:"hover:underline" %>
 		</div>
@@ -29,9 +31,8 @@
 			<% end %>
 		</div>
 	    <div>
-			<span class="[&_a]:bg-marinegreen"><%= render partial: 'tag', collection: card.locations %></span>
 			<span ><%= render partial: 'tag', collection: card.topics %></span>
-			<span class="[&_a]:bg-fluogreen [&_a]:text-grapeblack"><%= render partial: 'tag', collection: card.statuses %></span>
+			<span class="[&_a]:bg-marinegreen"><%= render partial: 'tag', collection: card.locations %></span>
 	    </div>
 	    
   	</div>
