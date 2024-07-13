@@ -2,7 +2,7 @@
 <%= @card.title %>
 <% end %>
 <div class="w-full container">
-
+  <span class="[&_a]:bg-fluogreen [&_a]:text-grapeblack"><%= render partial: 'tag', collection: @card.statuses %></span>
   <div class="flex justify-between items-center mb-2">
     <h1 class="font-bold text-5xl text-darkgreen"><%= @card.title %></h1>
   </div>
@@ -12,9 +12,8 @@
   </div>
   
   <div id="tags">
-	<span class="[&_a]:bg-marinegreen"><%= render partial: 'tag', collection: @card.locations %></span>
 	<span ><%= render partial: 'tag', collection: @card.topics %></span>
-	<span class="[&_a]:bg-fluogreen [&_a]:text-grapeblack"><%= render partial: 'tag', collection: @card.statuses %></span>
+	<span class="[&_a]:bg-marinegreen"><%= render partial: 'tag', collection: @card.locations %></span>
   </div>
   
   <div class="container mx-auto py-2">

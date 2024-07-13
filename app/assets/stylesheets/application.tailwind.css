@@ -28,4 +28,8 @@ input#toggle-more {
    left: -9999px;
 }
 
+div.trix-content a {
+	@apply no-underline hover:underline hover:underline-offset-3 font-bold text-razzmicberry
+}
+
 @import 'actiontext.css';
