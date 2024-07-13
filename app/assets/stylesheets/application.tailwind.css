@@ -29,7 +29,7 @@ input#toggle-more {
 }
 
 div.trix-content a {
-	@apply no-underline hover:underline hover:underline-offset-3 font-bold text-razzmicberry
+	@apply no-underline hover:underline underline-offset-1 font-bold text-razzmicberry
 }
 
 @import 'actiontext.css';
