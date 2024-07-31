@@ -74,6 +74,11 @@
 	</div>
 	
 	<div class="mt-10 mb-10" >
+		<%= form.label 'weight', "Poids", class:"block" %>
+		<%= form.text_field 'weight' %>
+	</div>
+	
+	<div class="mt-10 mb-10" >
 		<%= form.check_box :published, class:'checkbox' %>
 		<%= form.label :published, "Publié" %>
 		

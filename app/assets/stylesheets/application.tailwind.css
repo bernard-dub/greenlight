@@ -13,7 +13,7 @@
 */
 
 /* Default State */
-div#more-tags {
+div#more-tags, div#more-filters {
    display:none;
 }
 
@@ -22,7 +22,11 @@ input#toggle-more:checked ~ div#more-tags {
    display:inline;
 }
 
-input#toggle-more {
+input#toggle-filters:checked ~ div#more-filters {
+	display:inline;
+}
+
+input#toggle-more, input#toggle-filters {
    position: absolute;
    top: -9999px;
    left: -9999px;
