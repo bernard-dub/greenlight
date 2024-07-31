@@ -34,10 +34,12 @@
           <div class="block p-3 w-full rounded-lg shadow-lg bg-isabellinewhite text-grapeblack">
 			<%= @card.body %>
 		  </div>
+		  <% if user_signed_in? %>
           <div class="block p-3 w-full rounded-lg shadow-lg bg-razzmicberry text-white">
 			  <h2>Commentaire interne</h2>
 			<%= @card.comment %>
 		  </div>
+		  <% end %>
 		  <h2 class="mt-20 mb-3 text-2xl text-marinegreen font-bold">
 			  Sur le même thème ...
 		  </h2>
