@@ -11,25 +11,7 @@
     </div>
   <% end %>
   
-<div class="card-images rounded-lg my-10 flex">
 	
-    <% card.persisted_images.each do |image| %>
-      <figure class="relative min-w-500">
-        <%= image_tag image.variant(:thumb) %>
-        <%= tag.button(
-          "Supprimer",
-          type: "submit",
-          form: "delete_image_#{image.id}",
-		  class: "rounded-lg py-3 px-5 max-w-96 bg-gray-100/50 hover:bg-gray-100 inline-block font-medium absolute top-6 left-3") %>
-      </figure>
-    <% end %>
-	
-  	<div class="py-3 px-3 min-h-32 w-96 grow bg-gray-100">
-  		<%= form.label "Ajouter image"%>
-  		<%= form.file_field :new_images, multiple: true, direct_upload: true, class:"file:rounded-lg file:py-3 file:px-5 file:bg-gray-100 file:inline-block file:font-medium" %>
-  	</div>
-	
-</div>
   
 	<div class="mb-10">
 		<%= form.label 'Titre', class: "" %>
@@ -39,6 +21,26 @@
 	<div class="mb-10">
 		<%= form.label 'Sous-titre', class: "" %>
 		<%= form.text_area 'subtitle', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full font-bold"  %>
+	</div>
+	
+	<div class="card-images rounded-lg my-10 flex">
+
+		<% card.persisted_images.each do |image| %>
+		  <figure class="relative min-w-500">
+		    <%= image_tag image.variant(:thumb) %>
+		    <%= tag.button(
+		      "Supprimer",
+		      type: "submit",
+		      form: "delete_image_#{image.id}",
+			  class: "rounded-lg py-3 px-5 max-w-96 bg-gray-100/50 hover:bg-gray-100 inline-block font-medium absolute top-6 left-3") %>
+		  </figure>
+		<% end %>
+
+		<div class="py-3 px-3 min-h-32 w-96 grow bg-gray-100">
+			<%= form.label "Ajouter image"%>
+			<%= form.file_field :new_images, multiple: true, direct_upload: true, class:"file:rounded-lg file:py-3 file:px-5 file:bg-gray-100 file:inline-block file:font-medium" %>
+		</div>
+
 	</div>
 
 	<div class="mb-10">
@@ -75,13 +77,17 @@
 	
 	<div class="mt-10 mb-10" >
 		<%= form.label 'weight', "Poids", class:"block" %>
-		<%= form.text_field 'weight' %>
+		0 (au début) <%= form.text_field 'weight', :size=>"7" %> 1 (à la fin)
 	</div>
 	
 	<div class="mt-10 mb-10" >
 		<%= form.check_box :published, class:'checkbox' %>
 		<%= form.label :published, "Publié" %>
-		
+	</div>
+	
+	<div class="mb-10">
+		<%= form.label 'Commentaire interne', class:"" %>
+		<%= form.rich_text_area 'comment', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full min-h-32 bg-razzmicberry text-white" %>
 	</div>
 	
   

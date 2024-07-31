@@ -11,6 +11,7 @@ class Card < ApplicationRecord
   scope :published, -> { where(published: true) }
   
   has_rich_text :body
+  has_rich_text :comment
   
   validates_presence_of :title
   validates :weight, numericality: {:in => (0.0...1.0)}
