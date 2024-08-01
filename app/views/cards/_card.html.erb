@@ -34,7 +34,6 @@
 				<%= card.subtitle %>
 				<%= "> Plus ..." unless (current_page?(card_path(card)) || card.body.blank?) %>
 			<% end %>
-			<%= local_assigns[:comment] %>
 		</div>
 	    <div>
 			<span ><%= render partial: 'tag', collection: card.topics %></span>
