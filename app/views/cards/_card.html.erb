@@ -1,6 +1,11 @@
 
 <div id="<%= dom_id card %>" class="rounded-lg overflow-hidden shadow-lg bg-isabellinewhite border-2 border-transparent relative <% unless action_name == 'show' %> hover:shadow-none hover:border-darkgreen<% end %>">
 	
+	
+	<% if comment %>
+		<div class="bg-razzmicberry text-white py-1 px-3 text-sm"><%= render partial: 'layouts/icons/comment' %><%= card.comment%><span class="text-xs"><%= card.updated_at.strftime('%d/%m/%y %k:%m')%></span></div>
+	<% end %>
+	
 	<div class="flex relative min-h-12">
 		<% card.persisted_images.each do |image| %>
 			<figure class="h-48 overflow-hidden">
@@ -26,9 +31,10 @@
 		</div>
 	    <div class="mb-2 text-darkgreen">
 			<%= link_to_unless (current_page?(card_path(card)) || card.body.blank?), card.subtitle, card do %>
-			<%= card.subtitle %>
-			<%= "> Plus ..." unless (current_page?(card_path(card)) || card.body.blank?) %>
+				<%= card.subtitle %>
+				<%= "> Plus ..." unless (current_page?(card_path(card)) || card.body.blank?) %>
 			<% end %>
+			<%= local_assigns[:comment] %>
 		</div>
 	    <div>
 			<span ><%= render partial: 'tag', collection: card.topics %></span>

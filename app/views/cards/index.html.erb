@@ -7,7 +7,7 @@ Accueil
 
   <div class="flex justify-between items-center mb-2">
     <h1 class="font-bold text-5xl text-darkgreen">Nos réalisations et nos idées</h1>
-    <%= render partial: 'new_card_button' %>
+    <%= render partial: 'admin_buttons' %>
   </div>
 
 <div class="font-bold text-lg border-b-2 border-gray-200 mb-2">Explorer par ...</div>
@@ -37,7 +37,7 @@ Accueil
 </div>
 
   <div class="py-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-6 gap-5">
-      <%= render @cards %>
+      <%= render partial: 'card', collection: @cards, locals: {comment: false} %>
   </div>
 </div>
 

@@ -27,6 +27,10 @@ class CardsController < ApplicationController
     @related_tags[:topics] = @all_tags[:topics].flatten.uniq - @tags
     @related_tags[:statuses] = @all_tags[:statuses].flatten.uniq - @tags
   end
+  
+  def comments
+    @cards = Card.by_comment
+  end
 
   # GET /cards/new
   def new

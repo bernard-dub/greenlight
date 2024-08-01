@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'cards/comments', to: "cards#comments", as: :cards_comments
   resources :cards do
     resources :images
   end
