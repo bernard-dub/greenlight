@@ -12,7 +12,7 @@
 			<%= link_to_unless current_page?(cards_tagged_path(tag.id)), "##{tag.name}", cards_tagged_path(tag), class:"hover:underline hover:text-razzmicberry"%>
 		<% end %>
 	</h1>
-    <%= render partial: 'new_card_button' %>
+    <%= render partial: 'admin_buttons' %>
   </div>
    
   <% unless @cards.size < 4 %> 
