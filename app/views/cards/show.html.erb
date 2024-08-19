@@ -12,6 +12,7 @@
   </div>
   
   <div id="tags">
+	<span><%= render partial: 'like_button',  locals: {card: @card} %></span>
 	<span ><%= render partial: 'tag', collection: @card.topics %></span>
 	<span class="[&_a]:bg-marinegreen"><%= render partial: 'tag', collection: @card.locations %></span>
   </div>

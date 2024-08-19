@@ -108,8 +108,9 @@ class CardsController < ApplicationController
     respond_to do |format|
       if !likes.include?(@card.id) && @card.update(score: @card.score+1)
         likes.append(@card.id)
+        @likes = likes
         cookies.encrypted[:likes] = JSON.generate(likes)
-        format.html { redirect_to cards_path }
+        format.html { render partial: 'like_button', locals: {card: @card}, layout: false }
         format.json { render :list, status: :ok }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -123,11 +124,11 @@ class CardsController < ApplicationController
     respond_to do |format|
       if likes.include?(@card.id) && @card.update(score: @card.score-1)
         likes.delete(@card.id)
+        @likes = likes
         cookies.encrypted[:likes] = JSON.generate(likes)
-        format.html { redirect_to cards_path }
+        format.html { render partial: 'like_button', locals: {card: @card}, layout: false }
         format.json { render :list, status: :ok }
       else
-        logger.fatal "Error saving : #{@card.errors.to_s}"
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @card.errors, status: :unprocessable_entity }
       end
