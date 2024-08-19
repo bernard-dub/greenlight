@@ -1,6 +1,8 @@
 class CardsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show tagged]
-  before_action :set_card, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[index show tagged like unlike]
+  before_action :set_card, only: %i[ show edit update destroy like unlike ]
+  before_action :set_likes, only: %i[ index tagged show create update comments ]
+  
 
   # GET /cards or /cards.json
   def index
@@ -95,12 +97,54 @@ class CardsController < ApplicationController
                   status_list: row[:statuses])
     end
   end
+  
+  def delete_likes_cookies
+    cookies.encrypted[:likes] = nil
+    redirect_to cards_url
+  end
+  
+  def like
+    likes = cookies.encrypted[:likes].blank? ? [] : JSON.parse(cookies.encrypted[:likes])
+    respond_to do |format|
+      if !likes.include?(@card.id) && @card.update(score: @card.score+1)
+        likes.append(@card.id)
+        cookies.encrypted[:likes] = JSON.generate(likes)
+        format.html { redirect_to cards_path }
+        format.json { render :list, status: :ok }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @card.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+  def unlike
+    likes = cookies.encrypted[:likes].blank? ? [] : JSON.parse(cookies.encrypted[:likes])
+    respond_to do |format|
+      if likes.include?(@card.id) && @card.update(score: @card.score-1)
+        likes.delete(@card.id)
+        cookies.encrypted[:likes] = JSON.generate(likes)
+        format.html { redirect_to cards_path }
+        format.json { render :list, status: :ok }
+      else
+        logger.fatal "Error saving : #{@card.errors.to_s}"
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @card.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_card
       @card = Card.find(params[:id])
     end
+    
+    def set_likes
+      @likes = cookies.encrypted[:likes].blank? ? [] : (JSON.parse(cookies.encrypted[:likes]))
+    end
+    
 
     # Only allow a list of trusted parameters through.
     # def card_params
@@ -111,7 +155,7 @@ class CardsController < ApplicationController
       # if current_admin
 #         params.require(:poster).permit(:name, :email, :score, :image, :pdf, :place_list, :status)
 #       else
-        params.require(:card).permit(:title, :subtitle, :body, :location_list, :topic_list, :status_list, :weight, :published, :comment, new_images: [])
+        params.require(:card).permit(:title, :subtitle, :body, :location_list, :topic_list, :status_list, :weight, :score, :published, :comment, new_images: [])
       # end
     end
 end

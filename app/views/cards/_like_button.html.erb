@@ -1,0 +1,14 @@
+	<% button_class = "border hover:ring-2 hover:ring-offset-0 ring-razzmicberry border-razzmicberry mb-1 font-bold py-1 px-3 rounded-full inline-flex text-sm" 
+	# button_class = "inline-block bg-lightgreen hover:bg-razzmicberry rounded-full px-3 py-1 text-sm font-semibold text-isabellinewhite hover:text-isabellinewhite mr-2 mb-2" %>
+	
+	<%= turbo_frame_tag "card_like_#{card.id}", 'data-turbo-prefetch' => "false" do %>
+		<% if !@likes.include?(card.id) %>
+			<%= link_to card_like_path(card), class: "#{button_class} text-razzmicberry" do %>
+				<%= render "layouts/icons/heart" %> <%= card.score %>
+			<% end %>
+		<% else %>
+			<%= link_to card_unlike_path(card), class: "#{button_class} bg-razzmicberry text-isabellinewhite" do %>
+				<%= render "layouts/icons/heart" %> <%= card.score %>
+			<% end %>
+		<% end %>
+	<% end %>

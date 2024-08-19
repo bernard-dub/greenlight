@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_31_191335) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_19_141319) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,6 +61,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_31_191335) do
     t.text "subtitle"
     t.decimal "weight", precision: 6, scale: 5, default: "0.5"
     t.text "comment"
+    t.integer "score"
   end
 
   create_table "taggings", force: :cascade do |t|
