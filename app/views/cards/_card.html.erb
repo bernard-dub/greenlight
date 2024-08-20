@@ -26,10 +26,10 @@
 
   	<div class="pt-1 px-3 pb-3">
 		
-	    <div class="font-bold text-xl text-grapeblack">
+	    <div class="font-bold text-xl text-grapeblack text-balance">
 			<%= link_to_unless (current_page?(card_path(card)) || card.body.blank?), card.title, card, class:"hover:underline" %>
 		</div>
-	    <div class="mb-2 text-darkgreen">
+	    <div class="mb-2 text-darkgreen text-balance">
 			<%= link_to_unless (current_page?(card_path(card)) || card.body.blank?), card.subtitle, card do %>
 				<%= card.subtitle %>
 				<%= "> Plus ..." unless (current_page?(card_path(card)) || card.body.blank?) %>

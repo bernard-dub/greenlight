@@ -1,0 +1,45 @@
+
+<div id="<%= dom_id page %>" class="rounded-lg overflow-hidden shadow-lg bg-isabellinewhite border-2 border-transparent relative <% unless action_name == 'show' %> hover:shadow-none hover:border-darkgreen<% end %>">
+	
+	<% comment ||= false %>
+	<% if comment %>
+		<div class="bg-razzmicberry text-white py-1 px-3 text-sm"><%= render partial: 'layouts/icons/comment' %><%= page.comment%><span class="text-xs"><%= page.updated_at.strftime('%d/%m/%y %k:%m')%></span></div>
+	<% end %>
+	
+	<div class="flex relative min-h-12">
+		<% page.persisted_images.each do |image| %>
+			<figure class="h-48 overflow-hidden">
+				<%= link_to_unless (current_page?(page_path(page)) || page.body.blank?), (image_tag image.variant(:thumb), class:"object-cover min-h-48"), page do %>
+				<%= image_tag image, class:"object-cover min-h-48" %>
+				<% end %>
+			</figure>
+		<% end %>
+		<span class="[&_a]:bg-fluogreen text-isabellinewhite absolute bottom-0 left-3 bg-darkgreen border-darkgreen border-2 font-bold text-xl uppercase">Avec Ecolo,</span>
+	</div>
+	
+	<% if user_signed_in? %>
+		<%if !page.published %><span class="bg-red-200/50 hover:bg-red-300 text-red-600 text-sm py-1 px-3 rounded-lg inline-flex items-center absolute bottom-3 left-3">NON PUBLIE</span><% end %>
+		<%= link_to edit_page_path(page), class: "bg-sky-200/50 hover:bg-sky-300 text-sky-600 font-medium py-1 px-3 rounded-lg inline-flex items-center absolute bottom-3 right-3" do %>
+			<%= render "layouts/icons/wrench" %>
+		<% end %>
+	<% end %>
+
+  	<div class="px-3 pb-3">
+	    <div class="font-bold text-xl text-balance">
+			<%= link_to_unless (current_page?(page_path(page)) || page.body.blank?), page.title, page, class:"hover:underline text-isabellinewhite bg-darkgreen uppercase border-darkgreen border-2" %>
+		</div>
+	    <div class="mb-2 text-razzmicberry text-balance">
+			<%= link_to_unless (current_page?(page_path(page)) || page.body.blank?), page.subtitle, page do %>
+				<%= page.subtitle %>
+				<%= "> Plus ..." unless (current_page?(page_path(page)) || page.body.blank?) %>
+			<% end %>
+		</div>
+	    <div>
+			<span><%#= render partial: 'like_button',  locals: {page: page} %></span>
+			<span><%#= render partial: 'tag', collection: page.topics %></span>
+			<span class="[&_a]:bg-marinegreen"><%#= render partial: 'tag', collection: page.locations %></span>
+	    </div>
+	    
+  	</div>
+  
+</div>

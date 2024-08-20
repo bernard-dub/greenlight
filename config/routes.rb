@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'cards/comments', to: "cards#comments", as: :cards_comments
-  resources :cards do
+  resources :cards, :pages do
     resources :images
   end
   devise_for :users
@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   get 'cards/:id/like', to: 'cards#like', as: :card_like
   get 'cards/:id/unlike', to: 'cards#unlike', as: :card_unlike
   
-  resource :card
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

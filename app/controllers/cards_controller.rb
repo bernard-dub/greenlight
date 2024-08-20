@@ -7,6 +7,7 @@ class CardsController < ApplicationController
   # GET /cards or /cards.json
   def index
     @cards = user_signed_in? ? Card.all : Card.published
+    @pages = user_signed_in? ? Page.all : Page.published
   end
 
   # GET /cards/1 or /cards/1.json

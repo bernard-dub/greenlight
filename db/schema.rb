@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_19_141319) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_20_101706) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,7 +61,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_19_141319) do
     t.text "subtitle"
     t.decimal "weight", precision: 6, scale: 5, default: "0.5"
     t.text "comment"
-    t.integer "score"
+    t.integer "score", default: 0
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.string "title"
+    t.string "subtitle"
+    t.text "body"
+    t.boolean "published"
+    t.decimal "weight", precision: 6, scale: 5, default: "0.5"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "taggings", force: :cascade do |t|

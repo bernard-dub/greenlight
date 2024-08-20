@@ -5,9 +5,21 @@ Accueil
 
 <div class="w-full container">
 
-  <div class="flex justify-between items-center mb-2">
-    <h1 class="font-bold text-5xl text-darkgreen">Nos réalisations et nos idées</h1>
+  <div class="flex justify-between items-center mb-3">
+    <h1 class="font-bold text-5xl"><span class="bg-darkgreen text-isabellinewhite uppercase">Avec Ecolo,<br>ça bouge<br>à Profondeville</span></h1>
     <%= render partial: 'admin_buttons' %>
+  </div>
+
+  <div class="flex justify-between items-center mb-1">
+    <h2 class="font-bold text-3xl text-razzmicberry">Nos 4 priorités</h2>
+  </div>
+  
+  <div class="py-1 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-6 gap-5">
+      <%= render partial: 'pages/page', collection: @pages %>
+  </div>
+  
+  <div class="flex justify-between items-center mb-2">
+    <h2 class="font-bold text-3xl text-razzmicberry">En détail : tout notre bilan et nos propositions</h2>
   </div>
 
 <div class="font-bold text-lg border-b-2 border-gray-200 mb-2">Explorer par ...</div>

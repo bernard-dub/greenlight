@@ -42,6 +42,9 @@ https://medium.com/@schmidlinicole/how-to-import-data-from-an-excel-file-in-rail
 * candidates list
 * fil-rouge pages
 * feedback form
+* bugfix likes not updated
+* bugfix likes unset upon creation
+* bugfix associated cards
 
 
 ## Timesheet
