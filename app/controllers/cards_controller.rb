@@ -6,7 +6,7 @@ class CardsController < ApplicationController
 
   # GET /cards or /cards.json
   def index
-    @cards = user_signed_in? ? Card.all : Card.published
+    @cards = user_signed_in? ? Card.all.by_weight : Card.published.by_weight
     @pages = user_signed_in? ? Page.all : Page.published
   end
 
@@ -18,7 +18,7 @@ class CardsController < ApplicationController
     ids = params['id'].split('/')
     @tags = ids.map {|id| ActsAsTaggableOn::Tag.find(id.to_s)}
     names = @tags.map(&:name)
-    @cards = Card.tagged_with(names)
+    @cards = Card.published.tagged_with(names).by_weight
     @all_tags = {:locations => [], :topics => [], :statuses => []}
     @cards.each do |card|
       @all_tags[:locations] << card.locations.most_used

@@ -13,7 +13,7 @@ class Card < ApplicationRecord
   validates_presence_of :title
   validates :weight, numericality: {:in => (0.0...1.0)}
   
-  default_scope { order(weight: :asc) }
+  scope :by_weight, -> { order(weight: :asc) }
   scope :published, -> { where(published: true) }
   
   def self.by_comment
