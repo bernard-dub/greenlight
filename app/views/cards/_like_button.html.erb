@@ -3,11 +3,11 @@
 	
 	<%= turbo_frame_tag "card_like_#{card.id}", 'data-turbo-prefetch' => "false" do %>
 		<% if !@likes.include?(card.id) %>
-			<%= link_to card_like_path(card), class: "#{button_class} text-razzmicberry" do %>
+			<%= link_to card_like_path(card), 'data-no-turbolink' => true, class: "#{button_class} text-razzmicberry" do %>
 				<%= render "layouts/icons/heart" %> <%= card.score %>
 			<% end %>
 		<% else %>
-			<%= link_to card_unlike_path(card), class: "#{button_class} bg-razzmicberry text-isabellinewhite" do %>
+			<%= link_to card_unlike_path(card), 'data-no-turbolink' => true, class: "#{button_class} bg-razzmicberry text-isabellinewhite" do %>
 				<%= render "layouts/icons/heart" %> <%= card.score %>
 			<% end %>
 		<% end %>

@@ -20,21 +20,28 @@ A small app to display and organize projects, ideas or actions in a local commun
 * import items from spreadsheet
 https://medium.com/@schmidlinicole/how-to-import-data-from-an-excel-file-in-rails-7ac9a628137f
 rake import:card_data
-	
-## TO DO
+
 * Create simple user and login system as well as backend with devise
 	* https://www.digitalocean.com/community/tutorials/how-to-set-up-user-authentication-with-devise-in-a-rails-7-application
 	* 1hr
 * Create class and views for cards 
 	* 1hr
-
+	
 * Create tags and views for tagged cards (taggable)
 * Multifactored combinations of tags (e.g. idea + mobility + lustin)
-* Like buttons with cookies
-* Share buttons
+* Like buttons with cookies :  3 hrs
+	* needs debugging (turbo)
 * switch to pg to deploy on heroku
 * import items from spreadsheet
 https://medium.com/@schmidlinicole/how-to-import-data-from-an-excel-file-in-rails-7ac9a628137f
+
+	
+## TO DO
+
+* Share buttons
+* candidates list
+* fil-rouge pages
+* feedback form
 
 
 ## Timesheet
