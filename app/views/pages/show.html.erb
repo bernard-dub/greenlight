@@ -1,15 +1,58 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
-
-    <%= render @page %>
-
-    <%= link_to "Edit this page", edit_page_path(@page), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this page", page_path(@page), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
-    <%= link_to "Back to pages", pages_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+<% content_for :title do %>
+<%= @page.title %>
+<% end %>
+<div class="w-full container">
+  <div class="flex justify-between items-center mb-2">
+    <h1 class="font-bold text-5xl text-darkgreen"><%= @page.title %></h1>
   </div>
+  
+  <div id="subtitle" class="mb-2 font-bold text-xl text-grapeblack">
+	<%= @page.subtitle %>
+  </div>
+  
+  <div class="container mx-auto py-2">
+    <div class="-m-1 flex flex-wrap md:-m-2">
+      <div class="flex w-full lg:w-1/2 flex-wrap">
+	  	<% @page.persisted_images[0..2].each_with_index do |image, index| %>	  		
+		  <div 
+			  <%if index == 0 or @page.persisted_images[0..2].size == 2 %> class="w-full p-1 md:p-2"
+			  <% else  %> class="w-1/2 p-1 md:p-2"
+			  <% end %>>
+			<%= image_tag image, class:"block w-full max-h-80 rounded-lg object-cover object-center" %>
+		  </div>
+		  
+		<% end %>
+      </div>
+      <div class="flex w-full lg:w-1/2 flex-wrap">
+        <div class="w-full p-1 md:p-2">
+          <div class="block p-3 w-full rounded-lg shadow-lg bg-isabellinewhite text-grapeblack">
+			<%= @page.body %>
+		  </div>
+		  <% if user_signed_in? %>
+          <div class="block p-3 w-full rounded-lg shadow-lg bg-razzmicberry text-white">
+			  <%= render partial: 'layouts/icons/comment' %>
+			  <%= @page.comment %>
+		  </div>
+		  <% end %>
+		  <h2 class="mt-20 mb-3 text-2xl text-marinegreen font-bold">
+			  Sur le même thème ...
+		  </h2>
+		  <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 xxl:grid-cols-3 gap-5">
+			  <%= render partial: 'page', collection: @page.find_related_topics.published.limit(5) %>
+		  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+	<% if user_signed_in? %>
+		<%= link_to edit_page_path(@page), class: "bg-sky-200/50 hover:bg-sky-300 text-sky-600 font-medium py-1 px-3 rounded-lg inline-flex items-center absolute bottom-3 right-3" do %>
+			<%= render "layouts/icons/wrench" %>
+		<% end %>
+		<div class="inline-block ml-2">
+	      <%= button_to "Supprimer", page_path(@page), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+	    </div>
+	<% end%>
+	
+    <%= link_to "Liste", pages_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 </div>
