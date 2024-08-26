@@ -1,0 +1,19 @@
+<% content_for :title do %>
+Accueil
+<% end %>
+
+
+<div class="w-full container">
+
+  <div class="flex justify-between items-center mb-5">
+    <h1 class="font-bold text-4xl lg:text-5xl -skew-y-3 text-isabellinewhite uppercase text-balance w-4/5"><span class="bg-darkgreen"> Vos candidat.es <br> pour Profondeville </span></h1>
+    <%= render partial: 'admin_buttons' %>
+  </div>
+
+  
+  
+  <div class="py-1 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-6 gap-5">
+      <%= render partial: 'candidate', collection: @candidates %>
+  </div>
+ </div>
+

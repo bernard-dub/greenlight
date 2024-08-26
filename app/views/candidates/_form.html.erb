@@ -1,0 +1,91 @@
+<%= form_with(model: candidate, class: "contents") do |form| %>
+  <% if candidate.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(candidate.errors.count, "erreur") %> à corriger pour sauvegarder cet élément :</h2>
+
+      <ul>
+        <% candidate.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+	<div class="mt-10 mb-10" >
+		<%= form.label 'position', "Position", class:"block" %>
+		<%= form.text_field 'position', :size=>"7" %>
+	</div>
+  
+	<div class="mb-10">
+		<%= form.label 'firstname', 'Prénom', class: "" %>
+		<%= form.text_area 'firstname', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full font-bold uppercase"  %>
+	</div>
+
+	<div class="mb-10">
+		<%= form.label 'lastname', 'Nom', class: "" %>
+		<%= form.text_area 'lastname', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full text-3xl font-bold uppercase"  %>
+	</div>
+	
+	
+	
+	<div class="candidate-images rounded-lg my-10 flex">
+
+		<% candidate.persisted_images.each do |image| %>
+		  <figure class="relative min-w-500">
+		    <%= image_tag image.variant(:thumb) %>
+		    <%= tag.button(
+		      "Supprimer",
+		      type: "submit",
+		      form: "delete_image_#{image.id}",
+			  class: "trix-editor rounded-lg py-3 px-5 max-w-96 bg-gray-100/50 hover:bg-gray-100 inline-block font-medium absolute top-6 left-3") %>
+		  </figure>
+		<% end %>
+
+		<div class="py-3 px-3 min-h-32 w-96 grow bg-gray-100">
+			<%= form.label "Ajouter image"%>
+			<%= form.file_field :new_images, multiple: true, direct_upload: true, class:"file:rounded-lg file:py-3 file:px-5 file:bg-gray-100 file:inline-block file:font-medium" %>
+		</div>
+
+	</div>
+
+	<div class="mb-10">
+		<%= form.label 'Texte court', class:"" %>
+		<%= form.text_area 'short_description', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full min-h-32" %>
+	</div>
+	
+	<div class="mb-10">
+		<%= form.label 'Texte long', class:"" %>
+		<%= form.rich_text_area 'body', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full min-h-64" %>
+	</div>
+	
+	<div class="flex flex-wrap gap-4">
+		<div class="flex-basis-1/4">
+			<%= form.label :location_list, "Localisation", class:"block" %>
+			<%=
+			  form.text_field :location_list,
+			  value: @candidate.send(:location_list).to_s,
+			  placeholder: 'bois-de-villers'
+			%>
+		</div>
+	</div>
+	
+	<div class="mb-10">
+		<%= form.label 'Commentaire interne', class:"" %>
+		<%= form.rich_text_area 'comment', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full min-h-32 bg-razzmicberry text-white" %>
+	</div>
+	
+  
+  <div>
+    <%= form.submit "Sauvegarder", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>
+
+<% candidate.persisted_images.each do |image| %>
+  <%= form_with(
+    model: image,
+    url: candidate_image_path(candidate, image),
+    method: :delete,
+    id: "delete_image_#{image.id}") do %>
+  <% end %>
+<% end %>
+

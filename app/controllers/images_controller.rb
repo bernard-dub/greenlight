@@ -6,8 +6,10 @@ class ImagesController < ApplicationController
       respond_to do |format|
         if @parent.is_a?(Card)
           format.html { redirect_to edit_card_path(@parent), notice: "Image was successfully destroyed." }
-        else
+        elsif @parent.is_a?(Page)
           format.html { redirect_to edit_page_path(@parent), notice: "Image was successfully destroyed." }
+        elsif @parent.is_a?(Candidate)
+          format.html { redirect_to edit_candidate_path(@parent), notice: "Image was successfully destroyed." }
         end
         format.json { head :no_content }
       end
@@ -20,6 +22,8 @@ class ImagesController < ApplicationController
         @parent = Card.find(params[:card_id])
       elsif params[:page_id]
         @parent = Page.find(params[:page_id])
+      elsif params[:candidate_id]
+        @parent = Candidate.find(params[:candidate_id])
       end
     end
 end

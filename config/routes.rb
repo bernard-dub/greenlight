@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'cards/comments', to: "cards#comments", as: :cards_comments
-  resources :cards, :pages do
+  get 'candidates/comments', to: "candidates#comments", as: :candidates_comments
+  resources :cards, :pages, :candidates do
     resources :images
   end
   devise_for :users

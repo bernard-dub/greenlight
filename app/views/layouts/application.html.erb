@@ -22,9 +22,25 @@
 		    <p class="w-full py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="notice"><%= alert %></p>
 		  <% end %>
  	 	</div>
-		<%= link_to root_path, class:"flex mb-2" do %>
-		<span class="p-2"><%= render partial: 'layouts/logo-ecolo' %></span><span class="ml-2 text-darkgreen font-bold uppercase p-2 border-2 border-darkgreen">Profondeville</span>
-		<% end %>
+		<div class="py-1 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-5">
+			<div>
+				<%= link_to root_path, class:"flex mb-2 w-full lg:w-1/2" do %>
+				<span class="p-2"><%= render partial: 'layouts/logo-ecolo' %></span>
+				<span class="ml-2 text-darkgreen font-bold uppercase p-2 border-2 border-darkgreen">Profondeville</span>
+			<% end %>
+			</div>
+			<div class="navigation" class="w-full lg:w-1/2">
+				<%= link_to_unless_current 'Les priorités', root_path, class:"text-isabellinewhite bg-razzmicberry hover:text-grapeblack hover:bg-fluogreen font-bold -skew-y-3 uppercase p-2" do %>
+					<span class="text-grapeblack bg-fluogreen font-bold -skew-y-3 uppercase p-2" >Les priorités</span>
+				<% end %>
+				<%= link_to_unless_current 'Vos candidat.es', candidates_path, class:"text-isabellinewhite bg-razzmicberry hover:text-grapeblack hover:bg-fluogreen font-bold -skew-y-3 uppercase p-2" do %>
+					<span class="text-grapeblack bg-fluogreen font-bold -skew-y-3 uppercase p-2" >Vos candidat.es</span>
+				<% end %>
+				<%= link_to_unless_current 'En détail', root_path(anchor: 'detail'), class:"text-isabellinewhite bg-razzmicberry hover:text-grapeblack hover:bg-fluogreen font-bold -skew-y-3 uppercase p-2" do %>
+					<span class="text-grapeblack bg-fluogreen font-bold -skew-y-3 uppercase p-2" >En détail</span>
+				<% end %>
+			</div>
+		</div>
       	<%= yield %>
 		<footer>
 			<% if user_signed_in? %> 
