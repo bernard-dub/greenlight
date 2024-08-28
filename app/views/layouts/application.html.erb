@@ -24,21 +24,23 @@
  	 	</div>
 		<div class="py-1 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-5">
 			<div>
-				<%= link_to root_path, class:"flex mb-2 w-full lg:w-1/2" do %>
+				<%= link_to root_path, class:"flex mb-2 w-full" do %>
 				<span class="p-2"><%= render partial: 'layouts/logo-ecolo' %></span>
 				<span class="ml-2 text-darkgreen font-bold uppercase p-2 border-2 border-darkgreen">Profondeville</span>
 			<% end %>
 			</div>
-			<div class="navigation" class="w-full lg:w-1/2">
-				<%= link_to_unless_current 'Les priorités', root_path, class:"text-isabellinewhite bg-razzmicberry hover:text-grapeblack hover:bg-fluogreen font-bold -skew-y-3 uppercase p-2" do %>
-					<span class="text-grapeblack bg-fluogreen font-bold -skew-y-3 uppercase p-2" >Les priorités</span>
+			
+			<div class="navigation" class="w-full text-balance">
+				<%= link_to_unless_current 'Les priorités', root_path, class:"text-isabellinewhite bg-razzmicberry hover:text-grapeblack hover:bg-fluogreen font-bold uppercase p-2" do %>
+					<span class="text-grapeblack bg-fluogreen font-bold uppercase p-2 rounded" >Les priorités</span>
 				<% end %>
-				<%= link_to_unless_current 'Les candidat.es', candidates_path, class:"text-isabellinewhite bg-razzmicberry hover:text-grapeblack hover:bg-fluogreen font-bold -skew-y-3 uppercase p-2" do %>
-					<span class="text-grapeblack bg-fluogreen font-bold -skew-y-3 uppercase p-2" >Les candidat.es</span>
+				<%= link_to_unless_current 'Les candidat.es', candidates_path, class:"text-isabellinewhite bg-razzmicberry hover:text-grapeblack hover:bg-fluogreen font-bold uppercase p-2 rounded" do %>
+					<span class="text-grapeblack bg-fluogreen font-bold uppercase p-2 rounded" >Les candidat.es</span>
 				<% end %>
-				<%= link_to_unless_current 'Les histoires', root_path(anchor: 'detail'), class:"text-isabellinewhite bg-razzmicberry hover:text-grapeblack hover:bg-fluogreen font-bold -skew-y-3 uppercase p-2" do %>
-					<span class="text-grapeblack bg-fluogreen font-bold -skew-y-3 uppercase p-2" >Les histoires</span>
+				<%= link_to_unless_current 'Les histoires', root_path(anchor: 'detail'), class:"text-isabellinewhite bg-razzmicberry hover:text-grapeblack hover:bg-fluogreen font-bold uppercase p-2 rounded" do %>
+					<span class="text-grapeblack bg-fluogreen font-bold uppercase p-2 rounded" >Les histoires</span>
 				<% end %>
+				<%= link_to 'A vous', "https://framaforms.org/envoyez-nous-vos-propositions-1724787844", target:"blank", class:"text-isabellinewhite bg-razzmicberry hover:text-grapeblack hover:bg-fluogreen font-bold uppercase p-2 rounded" %>
 			</div>
 		</div>
       	<%= yield %>

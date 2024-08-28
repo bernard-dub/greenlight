@@ -32,7 +32,7 @@
 		      "Supprimer",
 		      type: "submit",
 		      form: "delete_image_#{image.id}",
-			  class: "trix-editor rounded-lg py-3 px-5 max-w-96 bg-gray-100/50 hover:bg-gray-100 inline-block font-medium absolute top-6 left-3") %>
+			  class: "rounded-lg py-3 px-5 max-w-96 bg-gray-100/50 hover:bg-gray-100 inline-block font-medium absolute top-6 left-3") %>
 		  </figure>
 		<% end %>
 
@@ -45,7 +45,7 @@
 
 	<div class="mb-10">
 		<%= form.label 'Texte', class:"" %>
-		<%= form.rich_text_area 'body', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full min-h-64" %>
+		<%= form.rich_text_area 'body', class: "trix-editor block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full min-h-64" %>
 	</div>
 	
 	<div class="flex flex-wrap gap-4">
