@@ -28,17 +28,17 @@
 					<%= image_tag("logo_ecolo_profondeville.png", width: 350, data: { title: 'Logo Ecolo Profondeville' }) %>
 				<% end %>
 			</div>
-			<div id="navigation" class="flex flex-row gap-4">
-				<div class=""><%= link_to_unless_current 'Les priorités', root_path, class:"text-isabellinewhite bg-razzmicberry hover:text-grapeblack hover:bg-fluogreen font-bold uppercase p-2 rounded-lg mb-1" do %>
-					<span class="text-grapeblack bg-fluogreen font-bold uppercase p-2 rounded-lg mb-1" >Les priorités</span>
+			<div id="navigation" class="flex gap-2 flex-wrap">
+				<div class="flex-none"><%= link_to_unless_current 'Les priorités', root_path, class:"nav-link" do %>
+					<span class="nav-selected" >Les priorités</span>
 				<% end %></div>
-				<div class=""><%= link_to_unless_current 'Les candidat.es', candidates_path, class:"text-isabellinewhite bg-razzmicberry hover:text-grapeblack hover:bg-fluogreen font-bold uppercase p-2 rounded-lg mb-1" do %>
-					<span class="text-grapeblack bg-fluogreen font-bold uppercase p-2 rounded-lg mb-1" >Les candidat.es</span>
+				<div class="flex-none"><%= link_to_unless_current 'Les candidat.es', candidates_path, class:"nav-link" do %>
+					<span class="nav-selected" >Les candidat.es</span>
 				<% end %></div>
-				<div class=""><%= link_to_unless_current 'Les histoires', root_path(anchor: 'detail'), class:"text-isabellinewhite bg-razzmicberry hover:text-grapeblack hover:bg-fluogreen font-bold uppercase p-2 rounded-lg mb-1" do %>
-					<span class="text-grapeblack bg-fluogreen font-bold uppercase p-2 rounded-lg mb-1" >Les histoires</span>
+				<div class="flex-none"><%= link_to_unless_current 'Les histoires', root_path(anchor: 'detail'), class:"nav-link" do %>
+					<span class="nav-selected" >Les histoires</span>
 				<% end %></div>
-				<div class=""><%= link_to 'A vous', "https://framaforms.org/envoyez-nous-vos-propositions-1724787844", target:"blank", class:"text-isabellinewhite bg-razzmicberry hover:text-grapeblack hover:bg-fluogreen font-bold uppercase p-2 rounded-lg mb-1" %></div>
+				<div class="flex-none"><%= link_to 'A vous', "https://framaforms.org/envoyez-nous-vos-propositions-1724787844", target:"blank", class:"nav-link" %></div>
 			</div>
 		</div>
       	<%= yield %>

@@ -32,8 +32,19 @@ input#toggle-more, input#toggle-filters {
    left: -9999px;
 }
 
-div.trix-content a, .trix-editor a {
-	@apply no-underline hover:underline underline-offset-1 font-bold text-razzmicberry
+@layer components {
+	
+	div.trix-content a, .trix-editor a {
+		@apply no-underline hover:underline underline-offset-1 font-bold text-razzmicberry
+	}
+
+	.nav-link {
+		@apply text-isabellinewhite bg-razzmicberry hover:text-grapeblack hover:bg-fluogreen font-bold uppercase py-1 px-3 rounded-lg inline-block;
+	}
+
+	.nav-selected {
+		@apply text-grapeblack bg-fluogreen font-bold uppercase py-1 px-3 rounded-lg inline-block;
+	}
 }
 
 /* Tailwind Override */

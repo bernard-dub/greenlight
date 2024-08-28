@@ -25,7 +25,7 @@ Accueil
 	</h2>
   </div>
 
-<div class="font-bold text-lg border-b-2 border-gray-200 mb-2">Explorer par ...</div>
+<div id="tag-title" class="font-bold text-lg border-b-2 border-gray-200 mb-2">Explorer par ...</div>
 
 <div class="flex flex-wrap md:flex-nowrap border-b-2 border-gray-200 mb-2">
 	<div class="md:flex-none md:w-32 basis-full">Statut</div>
@@ -34,13 +34,14 @@ Accueil
 	</div>
 </div>
 
+
 <div class="flex flex-wrap md:flex-nowrap border-b-2 border-gray-200 mb-2"> 
 	<div class="md:flex-none md:w-32 basis-full">Thème</div>
 	<div class="flex-1">
-		<%= render partial: 'tag', collection: ActsAsTaggableOn::Tag.for_context(:topics).most_used[0..9] %>
-		<label for="toggle-more" class="inline-block bg-marinegreen hover:bg-razzmicberry rounded-full px-3 py-1 text-sm font-semibold text-isabellinewhite hover:text-isabellinewhite mr-2 mb-2" script="onclick:self.innerHTML=\'moins\';">plus (<%= ActsAsTaggableOn::Tag.for_context(:topics).most_used.size-10 %>)</label>
+		<%= render partial: 'tag', collection: ActsAsTaggableOn::Tag.for_context(:topics).most_used(100)[0..9] %>
+		<label for="toggle-more" id="toggle-label" class="inline-block bg-marinegreen hover:bg-razzmicberry rounded-full px-3 py-1 text-sm font-semibold text-isabellinewhite hover:text-isabellinewhite mr-2 mb-2">plus (<%= ActsAsTaggableOn::Tag.for_context(:topics).most_used(100).size-10 %>)</label>
 		<input type="checkbox" id="toggle-more">
-		<div id="more-tags"><%= render partial: 'tag', collection: ActsAsTaggableOn::Tag.for_context(:topics).most_used[10..] %></div>		
+		<div id="more-tags"><%= render partial: 'tag', collection: ActsAsTaggableOn::Tag.for_context(:topics).most_used(100)[10..] %></div>		
 </div>
 	
 </div>
@@ -56,3 +57,17 @@ Accueil
   </div>
 </div>
 
+<script>
+	_e('toggle-more').addEventListener('change', function() {
+	    if (_e('toggle-more').checked) {
+			_e('toggle-label').innerHTML = '<< moins'
+		} else {
+			_e('toggle-label').innerHTML = 'plus (<%= ActsAsTaggableOn::Tag.for_context(:topics).most_used(100).size-10 %>)'
+		};
+		_e('tag-title').scrollIntoView();
+	}, false);
+
+	function _e(id) {
+	   return document.getElementById(id);
+	}
+</script>
