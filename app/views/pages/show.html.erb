@@ -24,16 +24,19 @@
 		<% end %>
       </div>
       <div class="flex w-full flex-wrap">
-        <div class="w-full p-1 md:p-2">
+        <div class="w-full p-1 md:p-2 mb-4">
           <div class="block p-3 w-full rounded-lg shadow-lg bg-isabellinewhite text-grapeblack">
 			<%= @page.body %>
 		  </div>
 		  <% if user_signed_in? %>
-          <div class="block p-3 w-full rounded-lg shadow-lg bg-razzmicberry text-white">
+          <div class="block mb-3 p-3 w-full rounded-lg shadow-lg bg-razzmicberry text-white">
 			  <%= render partial: 'layouts/icons/comment' %>
 			  <%= @page.comment %>
 		  </div>
 		  <% end %>
+		  <div class="grid grid-cols-2 gap-4 mt-6">
+			  <div class=""><%= link_to "La suite : Avec Ecolo, #{@page.prev.title}", @page.prev, class: "inline-block text-isabellinewhite bg-razzmicberry hover:text-grapeblack hover:bg-fluogreen font-bold uppercase p-2 rounded-lg text-balance" %></div>
+		  </div>
 		  <h2 class="mt-20 mb-3 text-2xl text-marinegreen font-bold">
 			  Les mesures phares
 		  </h2>

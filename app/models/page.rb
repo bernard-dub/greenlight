@@ -28,6 +28,26 @@ class Page < ApplicationRecord
     self.locations + self.topics + self.statuses
   end
   
+  def first?
+    self == Page.all.first
+  end
+  
+  def last?
+    self == Page.all.last
+  end
+  
+  def prev
+    pages = Page.all
+    index = self.first? ? -1 : pages.find_index(self)-1
+    pages[index]
+  end
+  
+  def next
+    pages = Page.all
+    index = self.last? ? 0 : pages.find_index(self)+1
+    pages[index]
+  end
+  
   def new_images=(images)
     self.images.attach(images)
   end
