@@ -18,11 +18,12 @@ Accueil
       <%= render partial: 'pages/page', collection: @pages %>
   </div>
   
-  <div class="flex justify-between items-center mt-10 mb-2">
-    <h2 class="font-bold text-3xl text-razzmicberry">
+  <div class="justify-between items-center mt-10 mb-2">
+    <h2 class="font-bold text-3xl text-razzmicberry basis-full">
 		<a name="detail" id="detail"></a>
 		Les histoires : propositions et réalisations, en petit et en grand !
 	</h2>
+	<p class="basis-full">Nous sommes fiers d'avoir pu avancer vers une commune + verte et + juste durant cette législature ! Les <%= link_to 'points de bilan', cards_tagged_path(4), class:"text-razzmicberry font-bold hover:underline" %> qui sont présentés ici reflètent des éléments que nous avons tantôt portés nous-mêmes, tantôt soutenus au sein de la majorité communale, ou encore obtenu d'autres instances et qui s'inscrivent dans notre trajectoire politique. Et les propositions ... appartiennent à tout le monde!</p>
   </div>
 
 <div id="tag-title" class="font-bold text-lg border-b-2 border-gray-200 mb-2">Explorer par ...</div>
