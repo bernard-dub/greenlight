@@ -7,6 +7,9 @@ class Card < ApplicationRecord
     attachable.variant :thumb, resize_to_limit: [600, 400]
   end
   
+  
+  has_and_belongs_to_many :pages
+  
   has_rich_text :body
   has_rich_text :comment
   

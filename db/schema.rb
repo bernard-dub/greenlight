@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_26_134821) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_05_173829) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,6 +73,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_26_134821) do
     t.decimal "weight", precision: 6, scale: 5, default: "0.5"
     t.text "comment"
     t.integer "score", default: 0
+  end
+
+  create_table "cards_pages", id: false, force: :cascade do |t|
+    t.bigint "card_id", null: false
+    t.bigint "page_id", null: false
   end
 
   create_table "pages", force: :cascade do |t|

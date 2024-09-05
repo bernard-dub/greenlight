@@ -37,12 +37,12 @@
 		  <div class="grid grid-cols-2 gap-4 mt-6">
 			  <div class=""><%= link_to "La suite : Avec Ecolo, #{@page.next.title}", @page.next, class: "inline-block text-isabellinewhite bg-razzmicberry hover:text-grapeblack hover:bg-fluogreen font-bold uppercase p-2 rounded-lg text-balance" %></div>
 		  </div>
-		  <h2 class="mt-20 mb-3 text-2xl text-marinegreen font-bold">
+		  <h2 class="py-10 text-2xl text-marinegreen font-bold">
 			  Les mesures phares
 		  </h2>
-		  <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 xxl:grid-cols-3 gap-5">
-			  <%#= render partial: 'cards/card', collection: @page.cards %>
-		  </div>
+			<div class=" grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-6 gap-5">
+				  <%= render partial: 'cards/card', collection: @page.cards %>
+		    </div>
         </div>
       </div>
     </div>

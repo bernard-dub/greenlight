@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!, except: %i[show]
   before_action :set_page, only: %i[ show edit update destroy ]
+  before_action :set_likes, only: %i[ show ]
+  
   
 
   # GET /pages or /pages.json
@@ -63,6 +65,10 @@ class PagesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_page
       @page = Page.find(params[:id])
+    end
+    
+    def set_likes
+      @likes = cookies.encrypted[:likes].blank? ? [] : (JSON.parse(cookies.encrypted[:likes]))
     end
 
     # Only allow a list of trusted parameters through.

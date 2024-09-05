@@ -75,6 +75,18 @@
 		</div>
 	</div>
 	
+	<div class="mb-10">
+		<%= form.label 'Inclus dans', class:"" %>
+		<ul>
+		<% for page in Page.all %>
+			<li>
+			   <%= check_box_tag 'card[page_ids][]', page.id, @card.page_ids.include?(page.id), :id => dom_id(page) %> 
+			   <%= label_tag dom_id(page), page.title, :class => "check_box_label" %> 
+		   </li>
+		<% end %>
+		</ul>
+	</div>
+	
 	<div class="mt-10 mb-10" >
 		<%= form.label 'weight', "Poids", class:"block" %>
 		0 (au début) <%= form.text_field 'weight', :size=>"7" %> 1 (à la fin)

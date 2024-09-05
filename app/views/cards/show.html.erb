@@ -41,14 +41,14 @@
 			  <%= @card.comment %>
 		  </div>
 		  <% end %>
-		  <h2 class="mt-20 mb-3 text-2xl text-marinegreen font-bold">
-			  Sur le même thème ...
-		  </h2>
-		  <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 xxl:grid-cols-3 gap-5">
-			  <%= render partial: 'card', collection: @card.find_related_topics.published.limit(5) %>
-		  </div>
-        </div>
-      </div>
+		</div>
+	</div>
+  <h2 class="py-10 text-2xl text-marinegreen font-bold">
+	  Sur le même thème ...
+  </h2>
+	<div class=" grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-6 gap-5">
+		  <%= render partial: 'pages/page', collection: @card.pages %>
+	 	  <%= render partial: 'card', collection: @card.find_related_topics.published.limit(5) %>
     </div>
   </div>
 

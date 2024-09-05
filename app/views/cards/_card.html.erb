@@ -14,7 +14,7 @@
 				<% end %>
 			</figure>
 		<% end %>
-		<span class="[&_a]:bg-fluogreen [&_a]:text-grapeblack absolute bottom-0 left-3"><%= render partial: 'tag', collection: card.statuses %></span>
+		<span class="[&_a]:bg-fluogreen [&_a]:text-grapeblack absolute bottom-0 left-3"><%= render partial: 'cards/tag', collection: card.statuses %></span>
 	</div>
 	
 	<% if user_signed_in? %>
@@ -36,9 +36,9 @@
 			<% end %>
 		</div>
 	    <div>
-			<span><%= render partial: 'like_button',  locals: {card: card} %></span>
-			<span><%= render partial: 'tag', collection: card.topics %></span>
-			<span class="[&_a]:bg-marinegreen"><%= render partial: 'tag', collection: card.locations %></span>
+			<span><%= render partial: 'cards/like_button',  locals: {card: card} %></span>
+			<span><%= render partial: 'cards/tag', collection: card.topics %></span>
+			<span class="[&_a]:bg-marinegreen"><%= render partial: 'cards/tag', collection: card.locations %></span>
 	    </div>
 	    
   	</div>
