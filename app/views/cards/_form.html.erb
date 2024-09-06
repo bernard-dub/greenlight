@@ -87,6 +87,18 @@
 		</ul>
 	</div>
 	
+	<div class="mb-10">
+		<%= form.label 'Associé aux candidats', class:"" %>
+		<ul class="grid grid-flow-row auto-rows-auto">
+		<% for candidate in Candidate.all %>
+			<li class="block">
+			   <%= check_box_tag 'card[candidate_ids][]', candidate.id, @card.candidate_ids.include?(candidate.id), :id => dom_id(candidate) %> 
+			   <%= label_tag dom_id(candidate), "#{candidate.position}. #{candidate.firstname} #{candidate.lastname}", :class => "check_box_label" %> 
+		   </li>
+		<% end %>
+		</ul>
+	</div>
+	
 	<div class="mt-10 mb-10" >
 		<%= form.label 'weight', "Poids", class:"block" %>
 		0 (au début) <%= form.text_field 'weight', :size=>"7" %> 1 (à la fin)

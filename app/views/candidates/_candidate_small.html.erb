@@ -1,0 +1,30 @@
+
+<div id="<%= dom_id candidate %>" class="h-14 flex flex-row rounded-full overflow-hidden shadow-lg bg-isabellinewhite border-2 border-transparent relative hover:shadow-none hover:border-darkgreen">
+		
+	<div class="flex-none self-center">
+		<% candidate.persisted_images.each do |image| %>
+			<figure class="">
+				<%= link_to (image_tag image.variant(:thumb), class:"self-center w-12 h-12 rounded-full m-1"), candidate %>
+			</figure>
+		<% end %>
+		<% if candidate.persisted_images.empty? %>
+			<figure class="">
+				<%= link_to (image_tag "default_profile_#{rand(3)+1}", class:"self-center w-12 h-12 rounded-full m-1"), candidate %>
+			</figure>
+		<% end %>
+	</div>
+	
+	
+  	<div class="self-center pl-1 pr-3 relative inset-0">
+			<%= link_to "#{candidate.firstname} #{candidate.lastname}", candidate, class:"object-fill inset-0 font-bold text-xl text-grapeblack h-full w-full" %>
+
+	    
+  	</div>
+	
+	<!-- <% if user_signed_in? %>
+		<%= link_to edit_candidate_path(candidate), class: "bg-sky-200/50 hover:bg-sky-300 text-sky-600 font-medium py-1 px-3 rounded-lg inline-flex items-center absolute bottom-3 right-3" do %>
+			<%= render "layouts/icons/wrench" %>
+		<% end %>
+	<% end %> -->
+  
+</div>

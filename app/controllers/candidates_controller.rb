@@ -1,6 +1,7 @@
 class CandidatesController < ApplicationController
   before_action :authenticate_user!, except: %i[index show tagged]
   before_action :set_candidate, only: %i[ show edit update destroy ]
+  before_action :set_likes, only: %i[ show ]
 
   # GET /candidates or /candidates.json
   def index
@@ -67,6 +68,10 @@ class CandidatesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_candidate
       @candidate = Candidate.find(params[:id])
+    end
+    
+    def set_likes
+      @likes = cookies.encrypted[:likes].blank? ? [] : (JSON.parse(cookies.encrypted[:likes]))
     end
 
     # Only allow a list of trusted parameters through.

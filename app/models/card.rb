@@ -9,6 +9,7 @@ class Card < ApplicationRecord
   
   
   has_and_belongs_to_many :pages
+  has_and_belongs_to_many :candidates
   
   has_rich_text :body
   has_rich_text :comment

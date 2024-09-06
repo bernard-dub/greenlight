@@ -5,6 +5,8 @@ class Candidate < ApplicationRecord
     attachable.variant :thumb, resize_to_limit: [600, 400]
   end
   
+  has_and_belongs_to_many :cards
+  
   acts_as_taggable_on :locations
   
   has_rich_text :body
