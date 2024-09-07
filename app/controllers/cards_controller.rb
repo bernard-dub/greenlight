@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show tagged like unlike]
+  # before_action :authenticate_user!, except: %i[index show tagged like unlike]
+  before_action :auth_user, except: %i[index show tagged like unlike]
   before_action :set_card, only: %i[ show edit update destroy like unlike ]
   before_action :set_likes, only: %i[ index tagged show create update comments ]
   
@@ -42,6 +43,7 @@ class CardsController < ApplicationController
 
   # GET /cards/1/edit
   def edit
+    authenticate_user!
   end
 
   # POST /cards or /cards.json
