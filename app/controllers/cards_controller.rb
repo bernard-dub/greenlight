@@ -116,8 +116,8 @@ class CardsController < ApplicationController
         format.html { render partial: 'like_button', locals: {card: @card}, layout: false }
         format.json { render :list, status: :ok }
       else
-        format.html { render :show, status: :unprocessable_entity }
-        format.json { render json: @card.errors, status: :unprocessable_entity }
+         format.html { head :bad_request }
+         format.json { head :bad_request }
       end
     end
   end
@@ -132,8 +132,8 @@ class CardsController < ApplicationController
         format.html { render partial: 'like_button', locals: {card: @card}, layout: false }
         format.json { render :list, status: :ok }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @card.errors, status: :unprocessable_entity }
+        format.html { head :bad_request }
+        format.json { head :bad_request }
       end
     end
   end
