@@ -35,7 +35,7 @@ input#toggle-more, input#toggle-filters {
 @layer components {
 	
 	div.trix-content a, .trix-editor a {
-		@apply no-underline hover:underline underline-offset-1 font-bold text-razzmicberry
+		@apply no-underline hover:underline underline-offset-1 font-bold text-razzmicberry;
 	}
 
 	.nav-link {
@@ -44,6 +44,10 @@ input#toggle-more, input#toggle-filters {
 
 	.nav-selected {
 		@apply text-grapeblack bg-fluogreen font-bold uppercase py-1 px-3 rounded-lg inline-block;
+	}
+	
+	.like-button {
+		@apply border hover:ring-2 hover:ring-offset-0 ring-razzmicberry border-razzmicberry mb-1 font-bold py-1 px-3 rounded-full inline-flex text-sm;
 	}
 }
 
