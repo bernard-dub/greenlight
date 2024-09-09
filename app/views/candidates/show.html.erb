@@ -1,6 +1,15 @@
 <% content_for :title do %>
-<%= @candidate.firstname %> <%= @candidate.lastname %>
+	<%= @candidate.firstname %> <%= @candidate.lastname %>
 <% end %>
+
+<% content_for :meta do %>
+	<meta property="og:url"                content="<%= candidate_url @candidate %>" />
+	<meta property="og:type"               content="list" />
+	<meta property="og:title"              content="<%= @candidate.firstname %> <%= @candidate.lastname %> - Ecolo Profondeville" />
+	<meta property="og:description"        content="<%= @candidate.short_description %>" />
+	<meta property="og:image"              content="<%= rails_blob_url(@candidate.persisted_images.first.variant(:web)) %>" />
+<% end %>
+
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">
     <% if notice.present? %>
@@ -20,7 +29,7 @@
    		<% @candidate.persisted_images.each do |image| %>
    			<figure class="min-h-48 overflow-hidden">
    				<%= link_to_unless (current_page?(candidate_path(@candidate)) || @candidate.body.blank?), (image_tag image.variant(:thumb), class:"object-cover min-h-48"), @candidate do %>
-   				<%= image_tag image, class:"object-cover min-h-48" %>
+   				<%= image_tag image.variant(:web), class:"object-cover min-h-48" %>
    				<% end %>
    			</figure>
    		<% end %>

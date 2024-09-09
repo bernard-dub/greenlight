@@ -1,6 +1,15 @@
 <% content_for :title do %>
-<%= @page.title %>
+	<%= @page.title %>
 <% end %>
+
+<% content_for :meta do %>
+	<meta property="og:url"                content="<%= page_url @page %>" />
+	<meta property="og:type"               content="article" />
+	<meta property="og:title"              content="Avec Ecolo, <%= @page.title %> - Ecolo Profondeville" />
+	<meta property="og:description"        content="<%= @page.subtitle %>" />
+	<meta property="og:image"              content="<%= rails_blob_url(@page.persisted_images.first.variant(:web)) %>" />
+<% end %>
+
 <div class="w-full container">
   <div class="flex justify-between items-center mb-5 w-4/5">
     <h1 class="font-bold text-4xl lg:text-5xl -skew-y-3 text-isabellinewhite uppercase text-balance">
@@ -19,7 +28,7 @@
 	  	<% @page.persisted_images[0..2].each_with_index do |image, index| %>
 		   		
 		  <div class="w-full p-1 md:p-2">
-			<%= image_tag image, class:"block w-full max-h-80 rounded-lg object-cover object-center" %>
+			<%= image_tag image.variant(:web), class:"block w-full max-h-80 rounded-lg object-cover object-center" %>
 		  </div>
 		<% end %>
       </div>

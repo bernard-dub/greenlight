@@ -5,6 +5,7 @@ class Card < ApplicationRecord
   
   has_many_attached :images do |attachable|
     attachable.variant :thumb, resize_to_limit: [600, 400]
+    attachable.variant :web, resize_to_limit: [1200, 1200]
   end
   
   

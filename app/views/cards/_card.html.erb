@@ -10,7 +10,7 @@
 		<% card.persisted_images.each do |image| %>
 			<figure class="h-48 overflow-hidden">
 				<%= link_to_unless (current_page?(card_path(card)) || card.body.blank?), (image_tag image.variant(:thumb), class:"object-cover min-h-48"), card do %>
-				<%= image_tag image, class:"object-cover min-h-48" %>
+				<%= image_tag image.variant(:thumb), class:"object-cover min-h-48" %>
 				<% end %>
 			</figure>
 		<% end %>

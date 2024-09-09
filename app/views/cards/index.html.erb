@@ -2,6 +2,13 @@
 Accueil
 <% end %>
 
+<% content_for :meta do %>
+	<meta property="og:url"                content="<%= root_url %>" />
+	<meta property="og:type"               content="index" />
+	<meta property="og:title"              content="Avec Ecolo, ça bouge à Profondeville" />
+	<meta property="og:description"        content="Le site de campagne d'Ecolo Profondeville" />
+	<meta property="og:image"              content="<%= image_url ("ecolo_profondeville_photo_groupe_2024.jpg") %>" />
+<% end %>
 
 <div class="w-full container">
 

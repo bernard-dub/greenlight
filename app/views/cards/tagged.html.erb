@@ -4,6 +4,14 @@
 	<% end %>
 <% end %>
 
+<% content_for :meta do %>
+	<meta property="og:url"                content="<%= cards_tagged_url @tags %>" />
+	<meta property="og:type"               content="list" />
+	<meta property="og:title"              content="<%= @tags.map{|tag|"##{tag}"}.join(" ") %> - Ecolo Profondeville" />
+	<% unless @cards.empty? or @cards.first.persisted_images.empty? %>
+		<meta property="og:image"              content="<%= rails_blob_url(@cards.first.persisted_images.first.variant(:web)) %>" />
+	<% end %>
+<% end %>
 
 <div class="w-full container">
   <div class="flex justify-between items-center mb-2">

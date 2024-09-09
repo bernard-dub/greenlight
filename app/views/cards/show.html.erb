@@ -1,6 +1,17 @@
 <% content_for :title do %>
-<%= @card.title %>
+	<%= @card.title %>
 <% end %>
+
+<% content_for :meta do %>
+	<meta property="og:url"                content="<%= card_url @card %>" />
+	<meta property="og:type"               content="article" />
+	<meta property="og:title"              content="<%= @card.title %> - Ecolo Profondeville" />
+	<meta property="og:description"        content="<%= @card.subtitle %>" />
+	<% unless @card.persisted_images.empty? %>
+		<meta property="og:image"              content="<%= rails_blob_url(@card.persisted_images.first.variant(:web)) %>" />
+	<% end %>
+<% end %>
+
 <div class="w-full container">
   <span class="[&_a]:bg-fluogreen [&_a]:text-grapeblack"><%= render partial: 'tag', collection: @card.statuses %></span>
   <div class="flex justify-between items-center mb-2">
@@ -25,7 +36,7 @@
 			  <%if index == 0 or @card.persisted_images[0..2].size == 2 %> class="w-full p-1 md:p-2"
 			  <% else  %> class="w-1/2 p-1 md:p-2"
 			  <% end %>>
-			<%= image_tag image, class:"block w-full max-h-80 rounded-lg object-cover object-center" %>
+			<%= image_tag image.variant(:web), class:"block w-full max-h-80 rounded-lg object-cover object-center" %>
 		  </div>
 		  
 		<% end %>
