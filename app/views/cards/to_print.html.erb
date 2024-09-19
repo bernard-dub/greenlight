@@ -1,0 +1,31 @@
+
+<div class="w-full container">
+	
+	<% for card in @cards %>
+	<div class="break-after-page bg-[url('<%= card.images.first.url %>')]">
+		
+		<h1 class="font-bold text-4xl lg:text-7xl -skew-y-3 text-isabellinewhite uppercase text-balance w-full pt-8 pb-16"><span class="bg-darkgreen"><%= card.title %></span></h1>
+		<div class="text-2xl">
+			<% for tag in card.statuses %>
+				<%= link_to cards_tagged_path(tag), class:"inline-block bg-fluogreen hover:bg-razzmicberry rounded-full px-3 py-1 text-xl font-semibold text-grapeblack hover:text-isabellinewhite mr-2 mb-2" do %>
+					#<%= tag.name %>
+				<% end %>
+			<% end %>
+			<% for tag in card.locations %>
+				<%= link_to cards_tagged_path(tag), class:"inline-block bg-lightgreen hover:bg-razzmicberry rounded-full px-3 py-1 text-xl font-semibold text-isabellinewhite hover:text-isabellinewhite mr-2 mb-2" do %>
+					#<%= tag.name %>
+				<% end %>
+			<% end %>
+			<% for tag in card.topics %>
+				<%= link_to cards_tagged_path(tag), class:"inline-block bg-razzmicberry hover:bg-razzmicberry rounded-full px-3 py-1 text-xl font-semibold text-isabellinewhite hover:text-isabellinewhite mr-2 mb-2" do %>
+					#<%= tag.name %>
+				<% end %>
+			<% end %>
+		</div>
+		<div class="text-4xl pr-40">
+			<%= card.subtitle %>
+		</div>
+		<%= image_tag("logo_ecolo_profondeville.png", width: 200, data: { title: 'Logo Ecolo Profondeville' }, class: "center") %>
+	</div>
+	<% end %>
+</div>

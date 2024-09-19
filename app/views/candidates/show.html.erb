@@ -3,11 +3,11 @@
 <% end %>
 
 <% content_for :meta do %>
-	<meta property="og:url"                content="<%= candidate_url @candidate %>" />
-	<meta property="og:type"               content="list" />
-	<meta property="og:title"              content="<%= @candidate.firstname %> <%= @candidate.lastname %> - Ecolo Profondeville" />
-	<meta property="og:description"        content="<%= @candidate.short_description %>" />
-	<meta property="og:image"              content="<%= rails_blob_url(@candidate.persisted_images.first.variant(:web)) %>" />
+	<meta property="og:url"	data-turbo-track="reload"	content="<%= candidate_url @candidate %>" />
+	<meta property="og:type"               data-turbo-track="reload"	content="list" />
+	<meta property="og:title"              data-turbo-track="reload" 	content="<%= @candidate.firstname %> <%= @candidate.lastname %> - Ecolo Profondeville" />
+	<meta property="og:description"        data-turbo-track="reload"	content="<%= @candidate.short_description %>" />
+	<meta property="og:image"              data-turbo-track="reload"	content="<%= rails_blob_url(@candidate.persisted_images.first.variant(:web)) %>" />
 <% end %>
 
 <div class="mx-auto md:w-2/3 w-full flex">

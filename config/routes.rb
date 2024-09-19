@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'cards/comments', to: "cards#comments", as: :cards_comments
+  get 'cards/to_print', to: "cards#to_print", as: :cards_to_print
   get 'candidates/comments', to: "candidates#comments", as: :candidates_comments
   resources :cards, :pages, :candidates do
     resources :images

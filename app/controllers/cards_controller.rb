@@ -1,14 +1,18 @@
 class CardsController < ApplicationController
   # before_action :authenticate_user!, except: %i[index show tagged like unlike]
-  before_action :auth_user, except: %i[index show tagged like unlike]
-  before_action :set_card, only: %i[ show edit update destroy like unlike ]
-  before_action :set_likes, only: %i[ index tagged show create update comments ]
+  before_action :auth_user, except: %i[index to_print show tagged like unlike]
+  before_action :set_card, only: %i[show edit update destroy like unlike ]
+  before_action :set_likes, only: %i[index to_print tagged show create update comments ]
   
 
   # GET /cards or /cards.json
   def index
     @cards = user_signed_in? ? Card.all.by_weight : Card.published.by_weight
     @pages = user_signed_in? ? Page.all : Page.published
+  end
+  
+  def to_print
+    index
   end
 
   # GET /cards/1 or /cards/1.json
