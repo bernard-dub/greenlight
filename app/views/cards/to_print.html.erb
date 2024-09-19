@@ -2,7 +2,7 @@
 <div class="w-full container break-before-page">
 	
 	<% for card in @cards %>
-	<div class="break-after-page relative">
+	<div class="break-after-page relative overflow-hidden min-h-[600px]">
 		<h1 class="font-bold text-4xl lg:text-7xl -skew-y-3 text-isabellinewhite uppercase text-balance w-full px-8 pt-8 pb-16"><span class="bg-darkgreen"><%= card.title %></span></h1>
 		<div class="text-2xl px-8 z-40">
 			<% for tag in card.statuses %>
@@ -25,7 +25,7 @@
 			<span class="bg-white/75 leading-9"><%= card.subtitle %></span>
 		</div>
 		<%= image_tag(card.images.first, class:"absolute top-0 -z-50 rounded-lg") unless card.images.empty? %>
-		<div class="bg-white mt-8 pl-[360px]"><%= image_tag("logo_ecolo_profondeville.png", width: 200, data: { title: 'Logo Ecolo Profondeville' }, class: "") %></div>
+		<div class="absolute bottom-0 w-full bg-white mt-8 pl-[360px]"><%= image_tag("logo_ecolo_profondeville.png", width: 200, data: { title: 'Logo Ecolo Profondeville' }, class: "") %></div>
 	</div>
 	<% end %>
 </div>
