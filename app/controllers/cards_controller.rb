@@ -13,6 +13,7 @@ class CardsController < ApplicationController
   
   def to_print
     index
+    render
   end
 
   # GET /cards/1 or /cards/1.json

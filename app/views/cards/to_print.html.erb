@@ -1,11 +1,10 @@
 
-<div class="w-full container">
+<div class="w-full container break-before-page">
 	
 	<% for card in @cards %>
-	<div class="break-after-page bg-[url('<%= card.images.first.url %>')]">
-		
-		<h1 class="font-bold text-4xl lg:text-7xl -skew-y-3 text-isabellinewhite uppercase text-balance w-full pt-8 pb-16"><span class="bg-darkgreen"><%= card.title %></span></h1>
-		<div class="text-2xl">
+	<div class="break-after-page relative">
+		<h1 class="font-bold text-4xl lg:text-7xl -skew-y-3 text-isabellinewhite uppercase text-balance w-full px-8 pt-8 pb-16"><span class="bg-darkgreen"><%= card.title %></span></h1>
+		<div class="text-2xl px-8 z-40">
 			<% for tag in card.statuses %>
 				<%= link_to cards_tagged_path(tag), class:"inline-block bg-fluogreen hover:bg-razzmicberry rounded-full px-3 py-1 text-xl font-semibold text-grapeblack hover:text-isabellinewhite mr-2 mb-2" do %>
 					#<%= tag.name %>
@@ -22,10 +21,11 @@
 				<% end %>
 			<% end %>
 		</div>
-		<div class="text-4xl pr-40">
-			<%= card.subtitle %>
+		<div class="text-4xl pl-8 z-30">
+			<span class="bg-white/75 leading-9"><%= card.subtitle %></span>
 		</div>
-		<%= image_tag("logo_ecolo_profondeville.png", width: 200, data: { title: 'Logo Ecolo Profondeville' }, class: "center") %>
+		<%= image_tag(card.images.first, class:"absolute top-0 -z-50 rounded-lg") unless card.images.empty? %>
+		<div class="bg-white mt-8 pl-[360px]"><%= image_tag("logo_ecolo_profondeville.png", width: 200, data: { title: 'Logo Ecolo Profondeville' }, class: "") %></div>
 	</div>
 	<% end %>
 </div>
