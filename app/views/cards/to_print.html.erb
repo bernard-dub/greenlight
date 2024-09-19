@@ -22,7 +22,7 @@
 			<% end %>
 		</div>
 		<div class="text-4xl pl-8 z-30">
-			<span class="bg-white/75 leading-9"><%= card.subtitle %></span>
+			<span class="bg-white leading-9"><%= card.subtitle %></span>
 		</div>
 		<%= image_tag(card.images.first, class:"absolute top-0 -z-50 rounded-lg") unless card.images.empty? %>
 		<div class="absolute bottom-0 w-full bg-white mt-8 pl-[360px]"><%= image_tag("logo_ecolo_profondeville.png", width: 200, data: { title: 'Logo Ecolo Profondeville' }, class: "") %></div>
