@@ -2,8 +2,9 @@
 <div class="w-full container break-before-page">
 	
 	<% for card in @cards %>
+
 	<div class="break-after-page relative overflow-hidden min-h-[600px]">
-		<h1 class="font-bold text-4xl lg:text-7xl -skew-y-3 text-isabellinewhite uppercase text-balance w-full px-8 pt-8 pb-16"><span class="bg-darkgreen"><%= card.title %></span></h1>
+		<h1 class="font-bold text-4xl lg:text-7xl -skew-y-3 text-isabellinewhite uppercase text-balance w-full px-8 pt-8 pb-16"><span class="<%= ['bg-darkgreen','bg-razzmicberry','bg-red-700','bg-indigo-700','bg-pink-600'].fetch(rand(5)-1)%>"><%= card.title %></span></h1>
 		<div class="text-2xl px-8 z-40">
 			<% for tag in card.statuses %>
 				<%= link_to cards_tagged_path(tag), class:"inline-block bg-fluogreen hover:bg-razzmicberry rounded-full px-3 py-1 text-xl font-semibold text-grapeblack hover:text-isabellinewhite mr-2 mb-2" do %>
@@ -24,7 +25,7 @@
 		<div class="text-4xl pl-8 text-balance z-30">
 			<span class="bg-white"><%= card.subtitle %></span>
 		</div>
-		<%= image_tag(card.images.first, class:"absolute top-0 -z-50 rounded-lg") unless card.images.empty? %>
+		<%#= image_tag(card.images.first, class:"absolute top-0 -z-50 rounded-lg") unless card.images.empty? %>
 		<div class="absolute bottom-0 w-full bg-white mt-8 pl-[360px]"><%= image_tag("logo_ecolo_profondeville.png", width: 200, data: { title: 'Logo Ecolo Profondeville' }, class: "") %></div>
 	</div>
 	<% end %>
