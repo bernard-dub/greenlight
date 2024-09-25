@@ -1,0 +1,26 @@
+<% content_for :title do %>
+Liste des rues
+<% end %>
+
+
+<div class="w-full container">
+
+  <div class="flex justify-between items-center mb-5">
+    <h1 class="font-bold text-4xl lg:text-5xl -skew-y-3 text-isabellinewhite uppercase text-balance w-4/5"><span class="bg-darkgreen"> Liste des rues </span></h1>
+    <%#= render partial: 'admin_buttons' %>
+  </div>
+
+  <% for location in @locations %>
+  	<h2 class="font-bold text-4xl lg:text-3xl text-razzmicberry uppercase text-balance w-4/5"><%= location.name %></h2>
+	<ul>
+	<% for street in @streets[location] %>
+		<li><%= link_to street.name, street_path(street) %> - <%= pluralize street.houses, 'maison' %></li>
+	<% end %>
+	</ul>
+  <% end %>
+  
+  <!-- <div class="py-1 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-6 gap-5">
+      <%#= render partial: 'street', collection: @streets %>
+  </div> -->
+ </div>
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_05_200804) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_25_131706) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -96,6 +96,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_05_200804) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "streets", force: :cascade do |t|
+    t.integer "position"
+    t.string "name"
+    t.string "integrated_name"
+    t.integer "houses"
+    t.text "body"
+    t.text "comment"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "parent_id"
+    t.index ["parent_id"], name: "index_streets_on_parent_id"
+  end
+
   create_table "taggings", force: :cascade do |t|
     t.bigint "tag_id"
     t.string "taggable_type"
@@ -141,5 +155,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_05_200804) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "streets", "streets", column: "parent_id"
   add_foreign_key "taggings", "tags"
 end

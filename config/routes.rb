@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
+  get 'streets/show'
+  get 'streets/index'
+  get 'streets/edit'
+  get 'streets/delete'
   get 'cards/comments', to: "cards#comments", as: :cards_comments
   get 'cards/to_print', to: "cards#to_print", as: :cards_to_print
   get 'candidates/comments', to: "candidates#comments", as: :candidates_comments
   resources :cards, :pages, :candidates do
     resources :images
   end
+  resources :streets
   devise_for :users
   get 'cards/tagged/*id', to: "cards#tagged", as: :cards_tagged
   get 'cards/:id/like', to: 'cards#like', as: :card_like
