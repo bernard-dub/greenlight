@@ -1,5 +1,5 @@
 class Street < ApplicationRecord
-  # has_and_belongs_to_many :cards
+  has_and_belongs_to_many :cards
   
   acts_as_taggable_on :locations
   
@@ -11,7 +11,19 @@ class Street < ApplicationRecord
   default_scope {order(position: :asc)}
   
   def name_with_context
-    integrated_name || "la #{name}"
+    integrated_name || "à la #{name}"
+  end
+  
+  def default_cards
+    Card.tagged_with(self.location)
+  end
+  
+  def related_cards
+    (self.cards + self.default_cards).uniq
+  end
+  
+  def location
+    locations.first
   end
   
 end

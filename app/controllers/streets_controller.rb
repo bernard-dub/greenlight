@@ -3,6 +3,8 @@ class StreetsController < ApplicationController
   
   def show
     @street = Street.find(params[:id])
+    @tags = []
+    @cards = @street.cards
   end
 
   def index
@@ -17,6 +19,23 @@ class StreetsController < ApplicationController
   end
 
   def delete
+  end
+  
+  def cards_tagged
+    ids = params['id'].split('/')
+    @tags = ids.map {|id| ActsAsTaggableOn::Tag.find(id.to_s)}
+    names = @tags.map(&:name)
+    @cards = Card.published.tagged_with(names).by_weight
+    @all_tags = {:locations => [], :topics => [], :statuses => []}
+    @cards.each do |card|
+      @all_tags[:locations] << card.locations.most_used
+      @all_tags[:topics] << card.topics.most_used
+      @all_tags[:statuses] << card.statuses.most_used
+    end
+    @related_tags = {}
+    @related_tags[:locations] = @all_tags[:locations].flatten.uniq - @tags
+    @related_tags[:topics] = @all_tags[:topics].flatten.uniq - @tags
+    @related_tags[:statuses] = @all_tags[:statuses].flatten.uniq - @tags
   end
   
   def import_data
