@@ -1,44 +1,44 @@
 
-<div id="<%= dom_id card %>" class="rounded-lg overflow-hidden shadow-lg bg-isabellinewhite border-2 border-transparent relative <% unless action_name == 'show' %> hover:shadow-none hover:border-darkgreen<% end %>">
+<div id="<%= dom_id card %>" class="rounded-lg overflow-hidden shadow-lg bg-isabellinewhite  border-2 border-transparent relative <% unless action_name == 'show' %> hover:shadow-none hover:border-darkgreen<% end %> print:bg-transparent print:border-darkgreen print:shadow-none">
 	
 	<% comment ||= false %>
 	<% if comment %>
 		<div class="bg-razzmicberry text-white py-1 px-3 text-sm"><%= render partial: 'layouts/icons/comment' %><%= card.comment%><span class="text-xs"><%= card.updated_at.strftime('%d/%m/%y %k:%m')%></span></div>
 	<% end %>
 	
-	<div class="flex relative min-h-12">
+	<div class="flex relative min-h-24">
 		<% card.persisted_images.each do |image| %>
-			<figure class="h-48 overflow-hidden">
-				<%= link_to_unless (current_page?(card_path(card)) || card.body.blank?), (image_tag image.variant(:thumb), class:"object-cover min-h-48"), card do %>
-				<%= image_tag image.variant(:thumb), class:"object-cover min-h-48" %>
+			<figure class="h-48 overflow-hidden print:h-24">
+				<%= link_to_unless (current_page?(card_path(card)) || card.body.blank?), (image_tag image.variant(:thumb), class:"object-cover min-h-48 print:min-h-24"), card do %>
+				<%= image_tag image.variant(:thumb), class:"object-cover min-h-48 print:min-h-24" %>
 				<% end %>
 			</figure>
 		<% end %>
-		<span class="[&_a]:bg-fluogreen [&_a]:text-grapeblack absolute bottom-0 left-3"><%= render partial: 'cards/tag', collection: card.statuses %></span>
+		<span class="[&_a]:bg-fluogreen [&_a]:text-grapeblack absolute bottom-0 left-3 print:text-[9px]"><%= render partial: 'cards/tag', collection: card.statuses %></span>
 	</div>
 	
 	<% if user_signed_in? %>
 		<%if !card.published %><span class="bg-red-200/50 hover:bg-red-300 text-red-600 text-sm py-1 px-3 rounded-lg inline-flex items-center absolute bottom-3 left-3">NON PUBLIE</span><% end %>
-		<%= link_to edit_card_path(card), class: "bg-sky-200/50 hover:bg-sky-300 text-sky-600 font-medium py-1 px-3 rounded-lg inline-flex items-center absolute bottom-3 right-3" do %>
+		<%= link_to edit_card_path(card), class: "bg-sky-200/50 hover:bg-sky-300 text-sky-600 font-medium py-1 px-3 rounded-lg inline-flex items-center absolute bottom-3 right-3 print:hidden" do %>
 			<%= render "layouts/icons/wrench" %>
 		<% end %>
 	<% end %>
 
   	<div class="pt-1 px-3 pb-3">
 		
-	    <div class="font-bold text-xl text-grapeblack text-balance">
+	    <div class="font-bold text-xl text-grapeblack text-balance print:text-base/5">
 			<%= link_to_unless (current_page?(card_path(card)) || card.body.blank?), card.title, card, class:"hover:underline" %>
 		</div>
-	    <div class="mb-2 text-darkgreen text-balance">
+	    <div class="mb-2 text-darkgreen text-balance print:text-sm">
 			<%= link_to_unless (current_page?(card_path(card)) || card.body.blank?), card.subtitle, card do %>
 				<%= card.subtitle %>
 				<%= "> Plus ..." unless (current_page?(card_path(card)) || card.body.blank?) %>
 			<% end %>
 		</div>
-	    <div>
-			<span><%= render partial: 'cards/like_button',  locals: {card: card} %></span>
+	    <div class="print:hidden">
+			<span class="print:hidden"><%= render partial: 'cards/like_button',  locals: {card: card} %></span>
 			<span><%= render partial: 'cards/tag', collection: card.topics %></span>
-			<span class="[&_a]:bg-marinegreen"><%= render partial: 'cards/tag', collection: card.locations %></span>
+			<span class="[&_a]:bg-marinegreen print:hidden"><%= render partial: 'cards/tag', collection: card.locations %></span>
 	    </div>
 	    
   	</div>
