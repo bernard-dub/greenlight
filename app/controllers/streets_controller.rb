@@ -16,12 +16,28 @@ class StreetsController < ApplicationController
   end
 
   def edit
+    @street = Street.find(params[:id])
+  end
+  
+  def update
+    @street = Street.find(params[:id])
+    @street.parent_id = params[:parent_id] || nil
+    respond_to do |format|
+      if @street.update(street_params)
+        format.html { redirect_to street_url(@street), notice: "Street was successfully updated." }
+        format.json { render :show, status: :ok, location: @street }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @cstreet.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def delete
   end
   
   def cards_tagged
+    @street = Street.find(params[:street_id])
     ids = params['id'].split('/')
     @tags = ids.map {|id| ActsAsTaggableOn::Tag.find(id.to_s)}
     names = @tags.map(&:name)
@@ -36,6 +52,22 @@ class StreetsController < ApplicationController
     @related_tags[:locations] = @all_tags[:locations].flatten.uniq - @tags
     @related_tags[:topics] = @all_tags[:topics].flatten.uniq - @tags
     @related_tags[:statuses] = @all_tags[:statuses].flatten.uniq - @tags
+  end
+  
+  def add_card
+    @street = Street.find(params[:street_id])
+    @card = Card.find(params[:card_id])
+    @street.cards << @card
+    @cards = @street.related_cards
+    render partial: 'related_cards'
+  end
+  
+  def remove_card
+    @street = Street.find(params[:street_id])
+    @card = Card.find(params[:card_id])
+    @street.cards.delete @card
+    @cards = @street.related_cards
+    render partial: 'related_cards'
   end
   
   def import_data
@@ -55,6 +87,6 @@ class StreetsController < ApplicationController
   private
   
     def street_params
-        params.require(:street).permit(:name, :integrated_name, :position, :houses, :location_list, :status, :parent_id, card_ids: [])
+        params.require(:street).permit(:name, :integrated_name, :body, :position, :houses, :location_list, :status, :parent_id, card_ids: [])
     end
 end

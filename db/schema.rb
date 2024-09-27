@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_25_171433) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_27_060221) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -88,6 +88,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_25_171433) do
   create_table "cards_streets", id: false, force: :cascade do |t|
     t.bigint "street_id", null: false
     t.bigint "card_id", null: false
+    t.index ["card_id", "street_id"], name: "by_card_and_street", unique: true
   end
 
   create_table "pages", force: :cascade do |t|

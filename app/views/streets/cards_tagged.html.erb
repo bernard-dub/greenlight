@@ -1,5 +1,5 @@
 <%= turbo_frame_tag 'cards' do %> 
-  <div class="flex justify-between items-center mb-2">
+  <div class="flex justify-between items-center mb-2 print:hidden">
     <h1 class="font-bold text-5xl text-darkgreen">
 		<% @tags.each do |tag| %>
 			<%= link_to_unless current_page?(cards_tagged_path(tag.id)), "##{tag.name}", cards_tagged_path(tag), class:"hover:underline hover:text-razzmicberry"%>
@@ -8,7 +8,7 @@
   </div>
    
   <% unless @cards.size < 4 %> 
-	<div class="flex flex-wrap">
+	<div class="flex flex-wrap print:hidden">
 		<label for="toggle-filters" class="w-full font-bold text-lg border-b-2 border-gray-200 mb-2">
 			<%= render partial: "layouts/icons/filter"%> Plus de filtres ...
 		</label>
@@ -48,5 +48,8 @@
 			<% end %>
 		</div>
 		<% end %>
+	</div>
+  	<div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 xxl:grid-cols-2 gap-5 print:grid-cols-3">
+		<%= render partial: 'card', collection: @cards %>
 	</div>
 <% end %>

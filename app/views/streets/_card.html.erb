@@ -9,17 +9,24 @@
 				<% end %>
 			</figure>
 		<% end %>
-		<span class="[&_a]:bg-fluogreen [&_a]:text-grapeblack absolute bottom-0 left-3 print:text-[9px]"><%= render partial: 'cards/tag', collection: card.statuses %></span>
+		<span class="[&_a]:bg-fluogreen [&_a]:text-grapeblack absolute bottom-0 left-3"><%= render partial: 'cards/tag', collection: card.statuses %></span>
 	</div>
 
-  	<div class="pt-1 px-3 pb-3">
+  	<div class="pt-1 px-3 pb-1">
 		
-	    <div class="font-bold text-xl text-grapeblack text-balance print:text-[9px]/5">
+	    <div class="font-bold text-xl text-grapeblack text-balance print:text-sm">
 			<%= link_to_unless (current_page?(card_path(card)) || card.body.blank?), card.title, card, class:"hover:underline" %>
 		</div>
-	    <div class="mb-2 text-darkgreen text-balance print:text-[9px]">
+	    <div class="mb-2 text-darkgreen text-balance print:text-[10px]">
 			<%= link_to_unless (current_page?(card_path(card)) || card.body.blank?), card.subtitle, card do %>
 				<%= card.subtitle %>
+			<% end %>
+		</div>
+		<div class="print:hidden">
+			<% unless @street.cards.include? card %>
+				<%= link_to 'Ajouter', street_add_card_path(@street, card), data: { turbo_frame: 'related_cards' }, class: "my-2 rounded-lg py-1 px-5 bg-razzmicberry hover:bg-darkgreen text-white font-medium" %>
+			<% else %>
+				<%= link_to 'Retirer', street_remove_card_path(@street, card), data: { turbo_frame: 'related_cards' }, class: "my-2 rounded-lg py-1 px-5 bg-razzmicberry hover:bg-darkgreen text-white font-medium" %>
 			<% end %>
 		</div>
 	    <div class="print:hidden">

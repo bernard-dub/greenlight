@@ -1,5 +1,7 @@
 class Street < ApplicationRecord
-  has_and_belongs_to_many :cards
+  has_and_belongs_to_many :cards, uniq: true
+  belongs_to :parent, class_name: "Street"
+  has_many :children, class_name: "Street", foreign_key: :parent_id
   
   acts_as_taggable_on :locations
   
@@ -11,7 +13,7 @@ class Street < ApplicationRecord
   default_scope {order(position: :asc)}
   
   def name_with_context
-    integrated_name || "à la #{name}"
+    integrated_name.blank? ? "à la #{name}" : integrated_name
   end
   
   def default_cards
@@ -19,11 +21,31 @@ class Street < ApplicationRecord
   end
   
   def related_cards
-    (self.cards + self.default_cards).uniq
+    result = self.cards 
+    result += self.parent.cards if self.has_parent
+    result += self.default_cards
+    result.uniq[0..8]
   end
   
   def location
     locations.first
   end
+  
+  def has_parent
+    !self.parent.blank?
+  end
+  
+  def has_children
+    !self.children.empty?
+  end
+  
+  def possible_parents
+    Street.tagged_with(self.location) - [self] - Street.all_children
+  end
+  
+  def self.all_children
+    Street.all.select{|s|s.has_parent}
+  end
+    
   
 end

@@ -16,13 +16,13 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-12 px-5 text-grapeblack print:mx-0">
+    <main class="container mx-auto mt-12 px-5 text-grapeblack">
 		<div class="w-full container">
 		  <% if notice.present? %>
-		    <p class="w-full py-2 px-3 bg-lightgreen mb-5 text-darkgreen font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+		    <p class="w-full py-2 px-3 bg-lightgreen mb-5 text-darkgreen font-medium rounded-lg inline-block print:hidden" id="notice"><%= notice %></p>
 		  <% end %>
 		  <% if alert.present? %>
-		    <p class="w-full py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="notice"><%= alert %></p>
+		    <p class="w-full py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block print:hidden" id="notice"><%= alert %></p>
 		  <% end %>
  	 	</div>
 		<div class="flex gap-5 flex-wrap mb-5 lg:mb-0 print:hidden">
@@ -42,6 +42,11 @@
 					<span class="nav-selected" >Les histoires</span>
 				<% end %></div>
 				<div class="flex-none"><%= link_to 'A vous', "https://framaforms.org/envoyez-nous-vos-propositions-1724787844", target:"blank", class:"nav-link" %></div>
+				<% if user_signed_in? %>
+					<div class="flex-none"><%= link_to_unless_current 'Rues', streets_path, class:"nav-link" do %>
+						<span class="nav-selected" >Rues</span>
+					<% end %></div>
+				<% end%>
 			</div>
 		</div>
       	<%= yield %>

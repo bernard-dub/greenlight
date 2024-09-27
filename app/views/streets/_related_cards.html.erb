@@ -1,0 +1,5 @@
+	<%= turbo_frame_tag 'related_cards' do %>  
+  	<div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 xxl:grid-cols-2 gap-5 print:grid-cols-3">
+ 		  <%= render partial: 'card', collection: @street.related_cards %>
+     </div>
+	 <% end %>
