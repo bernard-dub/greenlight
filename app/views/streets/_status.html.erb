@@ -1,0 +1,10 @@
+<%= turbo_frame_tag "status_#{@street.id}" do %>
+		<div class="dropdown">
+		  <button class="dropbtn" style="background-color:<%= Street::STATUSES[@street.status] %>"><%= @street.status %></button>
+		  <div class="dropdown-content">
+			<% Street::STATUSES.each do |status, color| %>
+				<%= link_to status, street_update_status_path(@street, status), data: { turbo_frame: "status_#{@street.id}", turbo_prefetch: "false"}, style: "background-color:#{color}" %>
+		    <% end %>
+		  </div>
+		</div>
+<% end %>

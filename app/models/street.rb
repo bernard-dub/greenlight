@@ -47,5 +47,5 @@ class Street < ApplicationRecord
     Street.all.select{|s|s.has_parent}
   end
     
-  
+  STATUSES = {'Non démarré'=> '#9ca3af', 'En cours'=> '#22d3ee', 'A valider'=> '#fbbf24', 'A imprimer'=> '#4ade80', 'Cloturé'=> '#6366f1'}
 end

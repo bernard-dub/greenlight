@@ -15,13 +15,18 @@ Liste des rues
 	<ul class="md:columns-2 lg:columns-3 mb-10">
 	<% for street in @streets[location] %>
 		<% unless street.has_parent %>
-		<li><%= link_to street.name, street_path(street), class: "hover:underline hover:text-razzmicberry" %>
+		<li class="">
+			<button class="dropbtn" style="background-color:<%= Street::STATUSES[street.status] %>">&nbsp;</button>
+			<%= link_to street.name, street_path(street), class: "hover:underline hover:text-razzmicberry text-[#{Street::STATUSES[street.status]}]" %>
 			<span class="text-gray-400"><%= pluralize street.houses, 'maison' %></span>
 			<% if street.has_children %>
 			<ul class="pl-6">
 				<% for substreet in street.children %>
-					<li><%= link_to substreet.name, street_path(substreet), class: "hover:underline hover:text-razzmicberry" %>
-						<span class="text-gray-400"><%= pluralize substreet.houses, 'maison' %></span></li>
+					<li class="">
+						<button class="dropbtn" style="background-color:<%= Street::STATUSES[substreet.status] %>">&nbsp;</button>
+						<%= link_to substreet.name, street_path(substreet), class: "hover:underline hover:text-razzmicberry text-[#{ Street::STATUSES[substreet.status]}]" %>
+						<span class="text-gray-400"><%= pluralize substreet.houses, 'maison' %></span>
+					</li>
 				<% end %>
 			</ul>
 			<% end %>

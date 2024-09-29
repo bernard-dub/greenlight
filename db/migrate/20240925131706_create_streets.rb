@@ -7,7 +7,7 @@ class CreateStreets < ActiveRecord::Migration[7.1]
       t.integer :houses
       t.text :body
       t.text :comment
-      t.string :status
+      t.string :status, default: 'Non démarré'
       
       t.timestamps
     end

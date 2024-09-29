@@ -70,6 +70,12 @@ class StreetsController < ApplicationController
     render partial: 'related_cards'
   end
   
+  def update_status
+    @street = Street.find(params[:street_id])
+    @street.update_attribute(:status, params['status'])
+    render partial: 'status'
+  end
+  
   def import_data
     ods = Roo::OpenOffice.new(Rails.root.join('lib', 'assets', 'import_streets.ods'))
     ods.sheet(0).each_with_index(location: 'location', name: 'name', position: 'position',
