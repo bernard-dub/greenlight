@@ -1,7 +1,7 @@
 class Street < ApplicationRecord
   has_and_belongs_to_many :cards, uniq: true
-  belongs_to :parent, class_name: "Street"
-  has_many :children, class_name: "Street", foreign_key: :parent_id
+  belongs_to :parent, class_name: "Street", optional: true
+  has_many :children, class_name: "Street", foreign_key: :parent_id, dependent: :destroy
   
   acts_as_taggable_on :locations
   

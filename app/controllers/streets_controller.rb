@@ -82,11 +82,20 @@ class StreetsController < ApplicationController
                                  houses: 'houses') do |row, row_index|                           
       next if row_index == 0 || row[:name].blank?
       # logger.debug "********* locations : #{row[:topics]}"
+      puts "---------------------------------"
+      puts "trying to create #{row[:name]}..."
      street = Street.find_or_create_by(name: row[:name])
-     street.update( name: row[:name],
+     if street.update( name: row[:name],
                   position: row[:position],
                   houses: row[:houses],
-                  location_list: row[:location])
+                  location_list: row[:location],
+                  status:"Non démarré")
+                  puts "success"
+                else
+                  street.errors.each do |error|
+                    puts error.full_message
+                  end
+                end
     end
   end
   
