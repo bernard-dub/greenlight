@@ -59,7 +59,7 @@
     </div>
 	
 	<%= turbo_frame_tag 'related_cards' do %>  
-  	<div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 xxl:grid-cols-2 gap-5 print:grid-cols-3">
+  	<div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xxl:grid-cols-3 gap-5 print:grid-cols-3">
  		  <%= render partial: 'card', collection: @street.related_cards %>
      </div>
 	 <% end %>
@@ -73,7 +73,7 @@
 
   </div>
   
-  
+  <a name="cards"></a>
  
  <%= turbo_frame_tag 'cards' do %>  
   <div id="search_by_tags" class="print:hidden">

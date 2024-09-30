@@ -22,7 +22,7 @@
 	
   	<div class="mb-10">
 		<%= form.label 'Dépend de', class:"" %>
-		<ul>
+		<ul class="md:columns-2 lg:columns-3">
 		<%= form.collection_radio_buttons :parent_id, @street.possible_parents, :id, :name, :class => "block check_box_label" do |b|%>
 			<li><%= b.label { b.radio_button }%> <%= b.text%></li>
 		<% end %>

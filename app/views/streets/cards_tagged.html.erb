@@ -5,10 +5,12 @@
 			<%= link_to_unless current_page?(cards_tagged_path(tag.id)), "##{tag.name}", cards_tagged_path(tag), class:"hover:underline hover:text-razzmicberry"%>
 		<% end %>
 	</h1>
+	<%= link_to "Supprimer filtres", street_path(@street), anchor: 'cards' %>
   </div>
    
   <% unless @cards.size < 4 %> 
 	<div class="flex flex-wrap print:hidden">
+		
 		<label for="toggle-filters" class="w-full font-bold text-lg border-b-2 border-gray-200 mb-2">
 			<%= render partial: "layouts/icons/filter"%> Plus de filtres ...
 		</label>

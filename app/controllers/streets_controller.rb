@@ -59,7 +59,12 @@ class StreetsController < ApplicationController
     @card = Card.find(params[:card_id])
     @street.cards << @card
     @cards = @street.related_cards
-    render partial: 'related_cards'
+    respond_to do |format|
+        format.html { redirect_to street_path(@street), notice: "Element ajouté." }
+        format.turbo_stream
+      end
+    
+    # render partial: 'related_cards'
   end
   
   def remove_card
@@ -67,7 +72,11 @@ class StreetsController < ApplicationController
     @card = Card.find(params[:card_id])
     @street.cards.delete @card
     @cards = @street.related_cards
-    render partial: 'related_cards'
+    respond_to do |format|
+        format.html { redirect_to street_path(@street), notice: "Element ajouté." }
+        format.turbo_stream
+      end
+    # render partial: 'related_cards'
   end
   
   def update_status

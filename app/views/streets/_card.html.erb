@@ -1,5 +1,5 @@
 
-<div id="<%= dom_id card %>" class="rounded-lg overflow-hidden shadow-lg bg-isabellinewhite  border-2 border-transparent relative print:bg-transparent print:border-darkgreen print:shadow-none">
+<div id="<%= dom_id card %>" class="rounded-lg overflow-hidden shadow-lg bg-isabellinewhite  border-2 border-transparent relative print:bg-transparent print:border-darkgreen print:shadow-none <%= 'grayscale' unless @street.cards.include? card %> print:grayscale-0">
 
 	<div class="flex relative min-h-24">
 		<% card.persisted_images.each do |image| %>
@@ -24,13 +24,13 @@
 		</div>
 		<div class="print:hidden">
 			<% unless @street.cards.include? card %>
-				<%= link_to 'Ajouter', street_add_card_path(@street, card), data: { turbo_frame: 'related_cards' }, class: "my-2 rounded-lg py-1 px-5 bg-razzmicberry hover:bg-darkgreen text-white font-medium" %>
+				<%= link_to 'Ajouter', street_add_card_path(@street, card), data: { turbo_frame: '_top', turbo_prefetch: "false" }, class: "my-2 rounded-lg py-1 px-5 bg-razzmicberry hover:bg-darkgreen text-white font-medium" %>
 			<% else %>
-				<%= link_to 'Retirer', street_remove_card_path(@street, card), data: { turbo_frame: 'related_cards' }, class: "my-2 rounded-lg py-1 px-5 bg-razzmicberry hover:bg-darkgreen text-white font-medium" %>
+				<%= link_to 'Retirer', street_remove_card_path(@street, card), data: { turbo_frame: '_top', turbo_prefetch: "false" }, class: "my-2 rounded-lg py-1 px-5 bg-razzmicberry hover:bg-darkgreen text-white font-medium" %>
 			<% end %>
 		</div>
 	    <div class="print:hidden">
-			<span><%= render partial: 'cards/tag', collection: card.topics %></span>
+			<span><%#= render partial: 'cards/tag', collection: card.topics %></span>
 	    </div>
 	    
   	</div>
