@@ -26,7 +26,7 @@
 			<% unless @street.cards.include? card %>
 				<span class="my-2 rounded-lg py-1 px-3 mx-1 bg-gray-400 text-white font-medium">
 					<% if @street.has_parent && @street.parent.cards.include?(card) %>
-						via <% @steeet.parent.name %>
+						via <%= @street.parent.name %>
 					<% else %>
 						par défaut
 					<% end %>
