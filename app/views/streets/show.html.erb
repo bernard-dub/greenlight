@@ -16,101 +16,99 @@
   </div>
 <!-- ----------------- -->
 
-  <div id="<%= dom_id @street %>" class="relative flex-row">
-	  
-<% if user_signed_in? %>	
-   	<% comment ||= false %>
-   	<% if comment %>
-   		<div class="bg-razzmicberry text-white py-1 px-3 text-sm"><%= render partial: 'layouts/icons/comment' %><%= @street.comment%><span class="text-xs"><%= @street.updated_at.strftime('%d/%m/%y %k:%m')%></span>
-		</div>
-   	<% end %>
+	<div id="<%= dom_id @street %>" class="relative flex-row">  
+	  <% if user_signed_in? %>	
+   	 	<% comment ||= false %>
+   		<% if comment %>
+   			<div class="bg-razzmicberry text-white py-1 px-3 text-sm">
+				<%= render partial: 'layouts/icons/comment' %><%= @street.comment%>
+				<span class="text-xs"><%= @street.updated_at.strftime('%d/%m/%y %k:%m')%></span>
+			</div>
+   		<% end %>
 	
-	<div class="print:hidden">
-		 <h1 class="font-bold text-2xl"><%= @street.position %> - <%= @street.name %> (<%= pluralize @street.houses, 'boîte' %>)</h1>
-		<%= render partial: 'status', locals: {street: @street} %>
- 		<%= link_to "Modifier", edit_street_path(@street), class: "mt-2 rounded-lg py-1 px-5 bg-razzmicberry text-white font-medium" %>
- 		<%= link_to "Retour", streets_path, class: "mt-2 rounded-lg py-1 px-5 bg-razzmicberry text-white font-medium" %>
+		<div class="print:hidden">
+			<h1 class="font-bold text-4xl text-darkgreen"><%= @street.position %> - <%= @street.name %> (<%= pluralize @street.houses, 'boîte' %>)</h1>
+			<%= render partial: 'status', locals: {street: @street} %>
+	 		<%= link_to "Modifier", edit_street_path(@street), class: "mt-2 rounded-lg py-1 px-5 bg-razzmicberry text-white font-medium" %>
+	 		<%= link_to "Retour", streets_path, class: "mt-2 rounded-lg py-1 px-5 bg-razzmicberry text-white font-medium" %>
 		 
-		 <% if @street.has_parent %>
-		 	Dépend de <%= link_to @street.parent.name, @street.parent %>
-		 <% end %>
-		 <% if @street.has_children %>
-		 	Inclut <% @street.children.each do |s| %>
-				<%= link_to s.name, s %>
-			<% end %>
-		 <% end %>
+			 <% if @street.has_parent %>
+			 	Dépend de <%= link_to @street.parent.name, @street.parent %>
+			 <% end %>
+			 <% if @street.has_children %>
+			 	Inclut <% @street.children.each do |s| %>
+					<%= link_to s.name, s %>
+				<% end %>
+			 <% end %>
 	    
-			
-		
-	 		<%#= button_to "Destroy this street", street_path(@street), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-	    	
 	 	</div>
+	<% end %>
 	</div>
-<% end %>
-	<h1 class="font-bold text-3xl -skew-y-3 text-white uppercase text-balance w-full px-8 pt-4 pb-8">
-		<span class="bg-darkgreen">
-			Avec Ecolo, il fait bon vivre
-			<%= "#{@street.name_with_context} !" %>
-		</span>
-	</h1>
+<div class="flex lg:columns-2 gap-4">
+	<div class="w-full">
+		<div class="flex">
+			<%= image_tag("logo_ecolo_profondeville.png", data: { title: 'Logo Ecolo Profondeville' }, class:"w-36 hidden print:inline-flex object-contain") %>
+			<h1 class="font-bold text-3xl -skew-y-3 text-white uppercase text-balance w-full px-8 pt-4 pb-8">
+				<span class="bg-darkgreen">
+					Avec Ecolo, il fait bon vivre
+					<%= "#{@street.name_with_context} !" %>
+				</span>
+			</h1>
+		</div>
          
-   	<div class="mb-2 px-8 text-grapeblack text-lg text-balance">
-   		<%= @street.body %>
-    </div>
+	   	<div class="mb-2 px-8 text-grapeblack text-lg text-balance">
+	   		<%= @street.body %>
+	    </div>
 	
-	<%= turbo_frame_tag 'related_cards' do %>  
-  	<div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xxl:grid-cols-3 gap-5 print:grid-cols-3">
- 		  <%= render partial: 'card', collection: @street.related_cards %>
-     </div>
-	 <% end %>
+		<%= turbo_frame_tag 'related_cards' do %>  
+	  	<div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xxl:grid-cols-3 gap-5 print:grid-cols-3">
+	 		  <%= render partial: 'card', collection: @street.related_cards %>
+	     </div>
+		 <% end %>
 	 
- 	<h1 class="font-bold text-lg -skew-y-3 text-white uppercase text-balance w-full px-8 pt-4 pb-8">
- 		<span class="bg-razzmicberry">
- 			Ce n'est qu'un aperçu ... Rendez vous sur <br/>
-			profondeville2024.ecolo.be pour tous les détails !
- 		</span>
- 	</h1>
+	 	<h1 class="font-bold text-lg -skew-y-3 text-white uppercase text-balance w-full px-8 pt-4 pb-8">
+	 		<span class="bg-razzmicberry">
+	 			Ce n'est qu'un aperçu ... Rendez vous sur <br/>
+				profondeville2024.ecolo.be pour tous les détails !
+	 		</span>
+	 	</h1>
+	</div>
+	<div class="w-full break-inside-avoid-column print:hidden border-2 border-darkgreen rounded-lg p-3">
+  		<a name="cards"></a>
+		<h1 class="font-bold text-3xl text-darkgreen">Composer</h1>
+ 	 	<%= turbo_frame_tag 'cards' do %>  
+  	  		<div id="search_by_tags" class="print:hidden">
+				<div id="tag-title" class="font-bold text-lg border-b-2 border-gray-200 mb-2">Explorer par ...</div>
+				<div class="flex flex-wrap md:flex-nowrap border-b-2 border-gray-200 mb-2">
+					<div class="md:flex-none md:w-32 basis-full">Statut</div>
+					<div class="flex-1 [&_a]:bg-fluogreen [&_a]:text-grapeblack">
+						<%= render partial: 'tag', collection: ActsAsTaggableOn::Tag.for_context(:statuses).most_used %>
+					</div>
+				</div>
 
-  </div>
+				<div class="flex flex-wrap md:flex-nowrap border-b-2 border-gray-200 mb-2"> 
+					<div class="md:flex-none md:w-32 basis-full">Thème</div>
+					<div class="flex-1">
+						<%= render partial: 'tag', collection: ActsAsTaggableOn::Tag.for_context(:topics).most_used(100)[0..9] %>
+						<label for="toggle-more" id="toggle-label" class="inline-block bg-marinegreen hover:bg-razzmicberry rounded-full px-3 py-1 text-sm font-semibold text-isabellinewhite hover:text-isabellinewhite mr-2 mb-2">plus (<%= ActsAsTaggableOn::Tag.for_context(:topics).most_used(100).size-10 %>)</label>
+						<input type="checkbox" id="toggle-more">
+						<div id="more-tags"><%= render partial: 'tag', collection: ActsAsTaggableOn::Tag.for_context(:topics).most_used(100)[10..] %></div>		
+					</div>
+				</div>
+				<div class="flex flex-wrap md:flex-nowrap border-b-2 border-gray-200 mb-2"> 
+					<div class="md:flex-none md:w-32 basis-full">Localité</div>
+	  				<div class="flex-1 [&_a]:bg-marinegreen">
+						<%= render partial: 'tag', collection: ActsAsTaggableOn::Tag.for_context(:locations).most_used %>
+					</div>
+				</div>
+  		  	</div>
   
-  <a name="cards"></a>
- 
- <%= turbo_frame_tag 'cards' do %>  
-  <div id="search_by_tags" class="print:hidden">
-	<div id="tag-title" class="font-bold text-lg border-b-2 border-gray-200 mb-2">Explorer par ...</div>
-
-	<div class="flex flex-wrap md:flex-nowrap border-b-2 border-gray-200 mb-2">
-		<div class="md:flex-none md:w-32 basis-full">Statut</div>
-		<div class="flex-1 [&_a]:bg-fluogreen [&_a]:text-grapeblack">
-			<%= render partial: 'tag', collection: ActsAsTaggableOn::Tag.for_context(:statuses).most_used %>
-		</div>
+  			<div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 xxl:grid-cols-2 gap-5 print:grid-cols-3 print:hidden">
+ 		  	  	<%= render partial: 'card', collection: @street.related_cards %>
+     	   	</div>
+		<% end %>
 	</div>
-
-
-	<div class="flex flex-wrap md:flex-nowrap border-b-2 border-gray-200 mb-2"> 
-		<div class="md:flex-none md:w-32 basis-full">Thème</div>
-		<div class="flex-1">
-			<%= render partial: 'tag', collection: ActsAsTaggableOn::Tag.for_context(:topics).most_used(100)[0..9] %>
-			<label for="toggle-more" id="toggle-label" class="inline-block bg-marinegreen hover:bg-razzmicberry rounded-full px-3 py-1 text-sm font-semibold text-isabellinewhite hover:text-isabellinewhite mr-2 mb-2">plus (<%= ActsAsTaggableOn::Tag.for_context(:topics).most_used(100).size-10 %>)</label>
-			<input type="checkbox" id="toggle-more">
-			<div id="more-tags"><%= render partial: 'tag', collection: ActsAsTaggableOn::Tag.for_context(:topics).most_used(100)[10..] %></div>		
-	</div>
-	
-	</div>
-	<div class="flex flex-wrap md:flex-nowrap border-b-2 border-gray-200 mb-2"> 
-		<div class="md:flex-none md:w-32 basis-full">Localité</div>
-	  	<div class="flex-1 [&_a]:bg-marinegreen">
-			<%= render partial: 'tag', collection: ActsAsTaggableOn::Tag.for_context(:locations).most_used %>
-		</div>
-	</div>
-  </div>
-  
-   
-   
-  	<div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 xxl:grid-cols-2 gap-5 print:grid-cols-3 print:hidden">
- 		  <%= render partial: 'card', collection: @street.related_cards %>
-     </div>
-<% end %>
+</div>
 <!-- ------------------ -->
     
 	<%= link_to "Retour à la liste", streets_path, class: "mt-3 mb-3 ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium print:hidden" %>

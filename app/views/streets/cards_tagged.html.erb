@@ -5,18 +5,17 @@
 			<%= link_to_unless current_page?(cards_tagged_path(tag.id)), "##{tag.name}", cards_tagged_path(tag), class:"hover:underline hover:text-razzmicberry"%>
 		<% end %>
 	</h1>
-	<%= link_to "Supprimer filtres", street_path(@street), anchor: 'cards' %>
   </div>
    
   <% unless @cards.size < 4 %> 
 	<div class="flex flex-wrap print:hidden">
 		
-		<label for="toggle-filters" class="w-full font-bold text-lg border-b-2 border-gray-200 mb-2">
-			<%= render partial: "layouts/icons/filter"%> Plus de filtres ...
+		<label for="toggle-filters" class=" font-bold text-lg border-b-2 border-gray-200 mb-2">
+			<%= render partial: "layouts/icons/filter"%> Plus de filtres ... <%= link_to "Supprimer filtres", street_path(@street), anchor: 'cards' %>
 		</label>
 		<input type="checkbox" id="toggle-filters">
 	
-		<div id="more-filters" class="w-full">
+		<div id="more-filters" class="">
 			<% unless @related_tags[:statuses].empty? %>
 			<div class="flex flex-wrap md:flex-nowrap border-b-2 border-gray-200 mb-2">
 				<div class="md:flex-none md:w-32 basis-full">Statut</div>
@@ -49,6 +48,8 @@
 			</div>
 			<% end %>
 		</div>
+		<% else %>
+			<%= link_to "Supprimer filtres", street_path(@street), anchor: 'cards' %>
 		<% end %>
 	</div>
   	<div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 xxl:grid-cols-2 gap-5 print:grid-cols-3">
