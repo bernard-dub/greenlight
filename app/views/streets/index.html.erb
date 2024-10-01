@@ -15,7 +15,7 @@ Liste des rues
 	<ul class="md:columns-2 lg:columns-3 mb-10">
 	<% for street in @streets[location] %>
 		<% unless street.has_parent %>
-		<li class="">
+		<li class="break-inside-avoid-column">
 			<button class="dropbtn" style="background-color:<%= Street::STATUSES[street.status] %>">&nbsp;</button>
 			<%= link_to street.name, street_path(street), class: "hover:underline hover:text-razzmicberry text-[#{Street::STATUSES[street.status]}]" %>
 			<span class="text-gray-400"><%= pluralize street.houses, 'boîte' %></span>
