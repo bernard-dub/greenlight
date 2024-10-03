@@ -4,7 +4,7 @@ class StreetsController < ApplicationController
   def show
     @street = Street.find(params[:id])
     @tags = []
-    @cards = @street.cards
+    @cards = @street.cards.published.by_weight
   end
 
   def index

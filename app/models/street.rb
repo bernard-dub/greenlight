@@ -17,12 +17,12 @@ class Street < ApplicationRecord
   end
   
   def default_cards
-    Card.tagged_with(self.location)
+    Card.tagged_with(self.location).published.by_weight
   end
   
   def related_cards
-    result = self.cards 
-    result += self.parent.cards if self.has_parent
+    result = self.cards.published.by_weight 
+    result += self.parent.cards.published.by_weight if self.has_parent
     result += self.default_cards
     result.uniq[0..8]
   end
