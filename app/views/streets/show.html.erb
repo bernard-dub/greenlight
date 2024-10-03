@@ -47,8 +47,8 @@
 <div class="flex lg:columns-2 gap-4">
 	<div class="w-full">
 		<div class="flex">
-			<%= image_tag("logo_ecolo_profondeville.png", data: { title: 'Logo Ecolo Profondeville' }, class:"w-36 hidden print:inline-flex object-contain") %>
-			<h1 class="font-bold text-3xl -skew-y-3 text-white uppercase text-balance w-full px-8 pt-4 pb-8">
+			<%= image_tag("logo_ecolo_profondeville.png", data: { title: 'Logo Ecolo Profondeville' }, class:"w-48 hidden print:inline-flex object-contain") %>
+			<h1 class="font-bold text-3xl -skew-y-3 text-white uppercase text-balance w-full px-8 pt-4 pb-8 print:pt-0">
 				<span class="bg-darkgreen">
 					Avec Ecolo, il fait bon vivre
 					<%= "#{@street.name_with_context} !" %>
@@ -65,13 +65,15 @@
 	 		  <%= render partial: 'card', collection: @street.related_cards %>
 	     </div>
 		 <% end %>
-	 
-	 	<h1 class="font-bold text-lg -skew-y-3 text-white uppercase text-balance w-full px-8 pt-4 pb-8">
-	 		<span class="bg-razzmicberry">
-	 			Ce n'est qu'un aperçu ... Rendez vous sur <br/>
-				profondeville2024.ecolo.be pour tous les détails !
-	 		</span>
-	 	</h1>
+		 <div class="flex ml-16">
+			 <%= image_tag("qr_code.png", data: { title: 'QR code' }, class:"w-16 hidden print:inline-flex object-contain") %>
+		 	<h1 class="font-bold -skew-y-3 text-razzmicberry uppercase text-balance w-full px-8 pt-4 pb-8">
+		 		<span class="">Ce n'est qu'un aperçu ... Rendez vous sur</span><br/>
+		 		<span class="lowercase text-darkgreen text-2xl">profondeville2024.ecolo.be</span><br/>
+				<span class="">pour tous les détails !</span>
+		 		</span>
+		 	</h1>
+		</div>
 	</div>
 	<div class="w-full break-inside-avoid-column print:hidden border-2 border-darkgreen rounded-lg p-3">
   		<a name="cards"></a>
