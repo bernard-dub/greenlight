@@ -1,4 +1,4 @@
-# Greenworks
+# Greenlight
 A small app to display and organize projects, ideas or actions in a local community.
 
 ## Features
