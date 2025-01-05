@@ -109,7 +109,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_27_060221) do
     t.integer "houses"
     t.text "body"
     t.text "comment"
-    t.string "status"
+    t.string "status", default: "Non démarré"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "parent_id"
